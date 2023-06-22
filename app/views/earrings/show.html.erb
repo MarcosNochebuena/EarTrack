@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @earring %>
+<%= image_tag @earring.photo, width:200 %>
+<div>
+  <%= link_to "Edit this earring", edit_earring_path(@earring) %> |
+  <%= link_to "Back to earrings", earrings_path %>
+
+  <%= button_to "Destroy this earring", @earring, method: :delete %>
+</div>

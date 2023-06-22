@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Keys</h1>
+
+<div id="keys">
+  <% @keys.each do |key| %>
+    <%= render key %>
+    <p>
+      <%= link_to "Show this key", key %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New key", new_key_path %>
