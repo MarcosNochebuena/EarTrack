@@ -1,0 +1,27 @@
+<%= form_with(model: key) do |form| %>
+  <% if key.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(key.errors.count, "error") %> prohibited this key from being saved:</h2>
+
+      <ul>
+        <% key.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :num_key, style: "display: block" %>
+    <%= form.text_field :num_key %>
+  </div>
+
+  <div>
+    <%= form.label :upp, style: "display: block" %>
+    <%= form.text_field :upp %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
