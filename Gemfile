@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # Bootstrap 5
 gem "bootstrap", "~> 5.2.0"
 
+#Font Awesome
+gem "font-awesome-sass", "~> 6.4.0"
+
 # Use Sass to process CSS
 gem "sassc-rails"
 
