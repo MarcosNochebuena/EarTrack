@@ -1,27 +1,32 @@
-<div id="<%= dom_id earring %>" class="container">
-  <p>
-    <strong>Key:</strong>
-    <%= earring.key_id %>
-  </p>
+<tr>
 
-  <p>
-    <strong>Earring:</strong>
+  <td>
+    <%= index %>
+  </td>
+
+  <td>
+    <%= earring.key.num_key %>
+  </td>
+
+  <td>
     <%= earring.earring %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Status:</strong>
-    <%= earring.status %>
-  </p>
-
-  <p>
-    <strong>Age:</strong>
+  <td>
     <%= earring.age %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Gender:</strong>
+  <td>
     <%= earring.gender %>
-  </p>
+  </td>
 
-</div>
+  <td class="d-flex">
+    <%= link_to(earring, class: "btn btn-sm me-2 btn-primary" ) do %>
+      <i class="fa-solid fa-eye text-white"></i>
+      <% end %>
+      <%= button_to(earring, method: :delete, data: { confirm: '¿Está seguro de eliminar la institución?' },
+          class: "btn btn-danger btn-sm" ) do %><i class="fa-solid fa-trash"></i>
+      <% end %>
+  </td>
+
+</tr>

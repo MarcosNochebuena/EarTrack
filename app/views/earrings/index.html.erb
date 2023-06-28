@@ -1,14 +1,37 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green">
+  <%= notice %>
+</p>
 
-<h1>Earrings</h1>
+<h1 class="text-center">Aretes Registrados</h1>
 
-<div id="earrings">
-  <% @earrings.each do |earring| %>
-    <%= render earring %>
-    <p>
-      <%= link_to "Show this earring", earring %>
-    </p>
-  <% end %>
+<div id="earrings" class="container">
+  <div class="card">
+    <div class="card-header bg-dark">
+      <%= link_to "Agregar arete", new_earring_path, class: 'btn btn-success' %>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Clave</th>
+              <th scope="col">No. Arete</th>
+              <th scope="col">Edad (meses)</th>
+              <th scope="col">Genero</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @earrings.each_with_index do |earring, index| %>
+              <tr>
+                <%= render earring, index: index+1  %>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New earring", new_earring_path %>

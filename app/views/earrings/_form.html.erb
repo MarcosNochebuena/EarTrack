@@ -1,47 +1,58 @@
-<%= form_with(model: earring) do |form| %>
-  <% if earring.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(earring.errors.count, "error") %> prohibited this earring from being saved:</h2>
+<%= form_with(model: earring) do |form| %> <% if earring.errors.any? %>
+<div style="color: red">
+  <h2>
+    <%= pluralize(earring.errors.count, "error" ) %> prohibited this earring
+    from being saved:
+  </h2>
 
-      <ul>
-        <% earring.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :key_id, style: "display: block" %>
-    <%= form.text_field :key_id %>
-  </div>
-
-  <div>
-    <%= form.label :earring, style: "display: block" %>
-    <%= form.number_field :earring %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :age, style: "display: block" %>
-    <%= form.number_field :age %>
-  </div>
-
-  <div>
-    <%= form.label :gender, style: "display: block" %>
-    <%= form.text_field :gender %>
-  </div>
-
-  <div>
-    <%= form.label :photo, style: "display: block" %>
-    <%= form.file_field :photo %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <ul>
+    <% earring.errors.each do |error| %>
+    <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+<div class="container col-8 card align-content-center p-0 mb-4">
+  <div class="card-header bg-dark">
+    <h3 class="text-center text-white">Información del Arete</h3>
+  </div>
+  <div class="card-body border-bottom-success">
+    <div class="mb-3">
+      <%= form.label :key_id, class: "form-label", value: "Clave" %> 
+      <%= form.collection_select :key_id, Key.all, :id, :num_key, { prompt: "Selecciona una clave" }, { class: "form-select" } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :earring, class: "form-label" , value:"Número de Arete"%>
+      <%= form.number_field :earring, class:"form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :status, class: "form-label", value: "Status" %>
+      <%= form.select :status, options_for_select(Earring.statuses.keys.map { |k| [k.humanize, k] }), { prompt: "Seleccione el status"}, class: "form-control" %>
+    </div>
+    
+
+    <div class="mb-3">
+      <%= form.label :age, class: "form-label" , value:"Edad (meses)" %> <%=
+      form.number_field :age, class:"form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :gender, class: "form-label" , value: "Género" %>
+      <br />
+      <div class="align-self-center d-flex justify-content-center">
+        <%= form.radio_button :gender, "M" , id: "male_gender" %> 
+        <%= form.label :male_gender, "Macho" , class:"ms-1" %> 
+        <%= form.radio_button :gender, "H" , id: "female_gender" , class:"ms-4" %> 
+        <%= form.label :female_gender, "Hembra" , class:"ms-1" %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <%= form.label :photo, class: "form-label" , value:"Foto" %> <%=
+      form.file_field :photo, class:"form-control" %>
+    </div>
+      <%= form.submit "Guardar", class: "btn btn-success"%>
+    <% end %>
+  </div>
+</div>
