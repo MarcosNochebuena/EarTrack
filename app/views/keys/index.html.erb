@@ -1,14 +1,30 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Keys</h1>
-
-<div id="keys">
-  <% @keys.each do |key| %>
-    <%= render key %>
-    <p>
-      <%= link_to "Show this key", key %>
-    </p>
-  <% end %>
+<div class="container">
+  <div id="keys">
+    <div class="card">
+      <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+        <h3 class="text-center text-white mx-auto">Claves</h3>
+        <%= link_to "Agregar Clave", new_key_path, class: "btn btn-success" %>
+      </div>
+      
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Numero de Clave</th>
+              <th>Clave UPP</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @keys.each do |key| %>
+            <%= render key %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 </div>
 
-<%= link_to "New key", new_key_path %>
+
+</div>

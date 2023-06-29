@@ -10,18 +10,25 @@
       </ul>
     </div>
   <% end %>
-
+<div class="container col-8 card align-content-center p-0 mb-4">
+  <div class="card-header bg-dark">
+    <h3 class="text-center text-white">Información de la Clave</h3>
+  </div>
+  <div class="card-body">
   <div>
-    <%= form.label :num_key, style: "display: block" %>
-    <%= form.text_field :num_key %>
+    <%= form.label :num_key, class: "form-label" , value:"Número de clave" %>
+    <%= form.text_field :num_key, class: "form-control" %>
+  </div>
+  
+  <div>
+    <%= form.label :upp, class: "form-label mt-2" , value:"Clave UPP" %>
+    <%= form.text_field :upp, class: "form-control", value:"16047345" %>
   </div>
 
-  <div>
-    <%= form.label :upp, style: "display: block" %>
-    <%= form.text_field :upp %>
+  <div class="mt-2 align-content-end">
+    <%= link_to "Cancelar", keys_path, class: "btn btn-danger" %>
+    <%= form.submit "Guardar", class: "btn btn-success" %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+  <% end %>
+</div>
+</div>
