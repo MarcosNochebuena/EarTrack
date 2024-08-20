@@ -47,7 +47,13 @@
             <th class="col-3">Foto:</th>
             <td class="align-self-center text-center">
               <div class="d-flex justify-content-center">
+              
+              <% if @earring.photo.present? %>
                 <%= image_tag @earring.photo, class: "rounded img-fluid", width: "400" %>
+              <% else %>
+                <p> <strong> Sin fotografía </strong></p>
+              <% end %>
+              
               </div>
             </td>
           </tr>

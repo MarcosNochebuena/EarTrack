@@ -29,7 +29,7 @@
 
     <div class="mb-3">
       <%= form.label :status, class: "form-label", value: "Status" %>
-      <%= form.select :status, options_for_select(Earring.statuses.keys.map { |k| [k.humanize, k] }), { prompt: "Seleccione el status"}, class: "form-control" %>
+      <%= form.select :status, options_for_select(Earring.statuses.values.map { |v| [v.humanize, v] },  (@earring.nil? || @earring.status.nil?) ? "vivo" : @earring.status), { prompt: "Seleccione el status"}, class: "form-control" %>
     </div>
     
 
