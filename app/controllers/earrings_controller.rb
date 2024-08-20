@@ -4,6 +4,7 @@ class EarringsController < ApplicationController
   # GET /earrings or /earrings.json
   def index
     @earrings = Earring.all
+    @earring = Earring.new
   end
 
   # GET /earrings/1 or /earrings/1.json

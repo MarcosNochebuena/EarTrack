@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_22_153803) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_153803) do
   end
 
   create_table "earrings", force: :cascade do |t|
-    t.integer "key_id", null: false
+    t.bigint "key_id", null: false
     t.integer "earring"
     t.string "status"
     t.integer "age"

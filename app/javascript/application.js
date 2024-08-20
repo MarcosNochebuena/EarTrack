@@ -3,6 +3,9 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "@popperjs/core";
 import "bootstrap";
+//= require jquery
+//= require jquery_ujs
+
 //import "template/scripts"
 window.addEventListener('DOMContentLoaded', event => {
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reports/index', to: "reports#index", as: "reports"
   resources :earrings
   resources :keys
   #get 'dashboard/index'

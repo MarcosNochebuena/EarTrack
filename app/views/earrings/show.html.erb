@@ -1,10 +1,103 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green">
+  <%= notice %>
+</p>
 
-<%= render @earring %>
-<%= image_tag @earring.photo, width:200 %>
-<div>
-  <%= link_to "Edit this earring", edit_earring_path(@earring) %> |
-  <%= link_to "Back to earrings", earrings_path %>
-
-  <%= button_to "Destroy this earring", @earring, method: :delete %>
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+      <%= link_to "Atras" , earrings_path, class: "btn btn-secondary" %>
+      <h1 class="text-white text-center mx-auto">Datos de <%= @earring.earring %></h1>
+      <%= link_to "Editar Arete", edit_earring_path(@earring), class: 'btn btn-success' %>
+    </div>
+    
+    <div class="card-body">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th class="col-3">Clave: </th>
+            <td>
+              <%= @earring.key.num_key %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-3">Arete: </th>
+            <td>
+              <%= @earring.earring %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-3">Status: </th>
+            <td>
+              <%= @earring.status %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-3">Edad: </th>
+            <td>
+              <%= @earring.age %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-3">Sexo: </th>
+            <td>
+              <%= @earring.gender %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-3">Foto:</th>
+            <td class="align-self-center text-center">
+              <div class="d-flex justify-content-center">
+              
+              <% if @earring.photo.present? %>
+                <%= image_tag @earring.photo, class: "rounded img-fluid", width: "400" %>
+              <% else %>
+                <p> <strong> Sin fotografía </strong></p>
+              <% end %>
+              
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h1 class="modal-title fs-5  text-white" id="staticBackdropLabel">Agregar Nuevo Arete</h1>
+        <button type="button" class="btn-close" style="background-color: white;" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <%= render "form", earring: @earring %>
+    </div>
+  </div>
+</div>  
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    var modalTrigger = document.querySelector('[data-bs-target="#staticBackdrop"]');
+    var modal = document.querySelector('#staticBackdrop');
+    
+    modalTrigger.addEventListener('click', function(event) {
+      var button = event.target;
+      var earringId = button.getAttribute('data-earring-id');
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/earrings/' + earringId + '/edit', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          modal.innerHTML = xhr.responseText;
+          var modalInstance = new bootstrap.Modal(modal);
+          modalInstance.show();
+        } else {
+          alert('Ocurrió un error al cargar el modal de edición.');
+        }
+      };
+      xhr.send();
+    });
+  });
+</script>

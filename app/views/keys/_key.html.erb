@@ -1,12 +1,17 @@
-<div id="<%= dom_id key %>">
-  <p>
-    <strong>Num key:</strong>
+<tr id="<%= dom_id key %>">
+  <td>
     <%= key.num_key %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Upp:</strong>
+  <td>
     <%= key.upp %>
-  </p>
-
-</div>
+  </td>
+  <td class="d-flex">
+     <%= link_to(key, class: "btn btn-sm me-2 btn-primary" ) do %>
+      <i class="fa-solid fa-eye text-white"></i>
+      <% end %>
+      <%= button_to(key, method: :delete, data: { confirm: '¿Está seguro de eliminar la clave?' },
+          class: "btn btn-danger btn-sm" ) do %><i class="fa-solid fa-trash"></i>
+      <% end %> 
+  </td>
+</tr>
