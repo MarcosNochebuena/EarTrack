@@ -13,12 +13,11 @@ module AppAretes
     config.assets.enabled = true
 
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    # available languages in the app
+    config.i18n.available_locales = [:en, :es]
+    # default language
+    config.i18n.default_locale = :es
+    config.active_storage.replace_on_assign_to_many = false
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end
