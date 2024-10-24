@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      setting:
+        one: "Configuración"
+        other: "Configuraciones"
+
+    attributes:
+      setting:
+        upp_key: "Clave UPP"
+        producer_full_name: "Nombre del productor"
+        produced_adress: 'Dirección'
