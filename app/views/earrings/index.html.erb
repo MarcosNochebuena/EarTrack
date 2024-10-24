@@ -7,13 +7,26 @@
   <%= link_to "Agregar arete", new_earring_path, class: 'btn btn-success' %>
 </div>
 
+<%= search_form_for @q, remote: true, class: 'row p-3 ms-auto', data: { controller: 'filters' } do |f| %>
+  <div class="col-auto">
+    <%= f.search_field :earring_cont, class: 'form-control', placeholder: "Número de Arete", data: { action: "input->filters#submitForm"} %>
+  </div>
+  <div class="col-auto">
+    <%= f.search_field :key_num_key_cont, class: 'form-control', placeholder: "Clave", data: { action: "input->filters#submitForm"} %>
+  </div>
+  <div class="col-auto d-flex align-items-end">
+    <%= f.submit "Buscar", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
 
 <div class="container">
   <%= turbo_frame_tag :earrings, class:"row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" do %>
       <%= render @earrings %>
   <% end %>
   <% if @pagy.next %>
-    <%= turbo_frame_tag :pagination, loading: :lazy, src: earrings_path(format: :turbo_stream, page: @pagy.next) %>
+    <%= turbo_frame_tag :pagination, loading: :lazy, src: earrings_path(format: :turbo_stream, page: @pagy.next, q: params[:q]&.to_unsafe_h) %>
   <% end %>
 </div>
 

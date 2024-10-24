@@ -77,27 +77,3 @@
     </div>
   </div>
 </div>  
-<script>
-   document.addEventListener('DOMContentLoaded', function() {
-    var modalTrigger = document.querySelector('[data-bs-target="#staticBackdrop"]');
-    var modal = document.querySelector('#staticBackdrop');
-    
-    modalTrigger.addEventListener('click', function(event) {
-      var button = event.target;
-      var earringId = button.getAttribute('data-earring-id');
-      
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/earrings/' + earringId + '/edit', true);
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          modal.innerHTML = xhr.responseText;
-          var modalInstance = new bootstrap.Modal(modal);
-          modalInstance.show();
-        } else {
-          alert('Ocurrió un error al cargar el modal de edición.');
-        }
-      };
-      xhr.send();
-    });
-  });
-</script>
