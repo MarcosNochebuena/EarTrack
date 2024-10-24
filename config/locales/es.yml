@@ -1,0 +1,23 @@
+es:
+  hello: "Hola"
+  show: "Mostrar"
+  edit: "Editar"
+  destroy: "Eliminar"
+  new: "Crear"
+  traveling_sheet: "Ver Hoja Viajera"
+  data-sheet: "Ficha Técnica"
+  lists:
+    sizes: "Tallas"
+
+  global:
+    forms:
+      messages:
+        errors:
+          one: "1 error impide guardar el elemento:"
+          other: "%{count} errores impiden guardar el elemento:"
+  
+  confirm_delete: "¿Estás seguro de eliminar el registro?"
+  actions:
+    create: 'creó'
+    update: 'actualizó'
+    destroy: 'eliminó'
