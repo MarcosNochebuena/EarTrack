@@ -3,8 +3,12 @@ class EarringsController < ApplicationController
 
   # GET /earrings or /earrings.json
   def index
-    @earrings = Earring.all
-    @earring = Earring.new
+    @pagy, @earrings = pagy(Earring.all)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /earrings/1 or /earrings/1.json

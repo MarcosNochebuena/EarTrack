@@ -102,6 +102,8 @@ GEM
       railties (>= 6.1)
     erubi (1.12.0)
     execjs (2.8.1)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     ffi (1.15.5-x64-mingw-ucrt)
     ffi (1.15.5-x86-mingw32)
@@ -151,6 +153,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
+    pagy (9.1.0)
     pg (1.5.7)
     pg (1.5.7-x64-mingw-ucrt)
     pg (1.5.7-x86-mingw32)
@@ -264,9 +267,11 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
+  faker (~> 3.5)
   font-awesome-sass (~> 6.4.0)
   importmap-rails
   jbuilder
+  pagy
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
