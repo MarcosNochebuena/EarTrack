@@ -7,10 +7,13 @@
   <%= link_to "Agregar arete", new_earring_path, class: 'btn btn-success' %>
 </div>
 
+
 <div class="container">
-  <div id="scroll-table">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="models">
+  <%= turbo_frame_tag :earrings, class:"row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" do %>
       <%= render @earrings %>
-    </div>
-  </div>
+  <% end %>
+  <% if @pagy.next %>
+    <%= turbo_frame_tag :pagination, loading: :lazy, src: earrings_path(format: :turbo_stream, page: @pagy.next) %>
+  <% end %>
 </div>
+

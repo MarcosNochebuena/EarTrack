@@ -3,7 +3,12 @@ class KeysController < ApplicationController
 
   # GET /keys or /keys.json
   def index
-    @keys = Key.all
+    @pagy, @keys = pagy(Key.all)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /keys/1 or /keys/1.json
