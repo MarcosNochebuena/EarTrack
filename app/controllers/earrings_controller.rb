@@ -3,7 +3,8 @@ class EarringsController < ApplicationController
 
   # GET /earrings or /earrings.json
   def index
-    @pagy, @earrings = pagy(Earring.all)
+    @q = Earring.includes(:key).ransack(params[:q])
+    @pagy, @earrings = pagy(@q.result(distinct: true))
 
     respond_to do |format|
       format.html
@@ -58,7 +59,7 @@ class EarringsController < ApplicationController
     @earring.destroy
 
     respond_to do |format|
-      format.html { redirect_to earrings_url, notice: "Earring was successfully destroyed." }
+      format.html { redirect_to earrings_path, notice: "Earring was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -72,5 +73,9 @@ class EarringsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def earring_params
       params.require(:earring).permit(:key_id, :earring, :status, :age, :gender, :photo)
+    end
+    
+    def search_params
+      params.fetch(:q, {}).permit(:earring_cont, :key_num_key_eq)
     end
 end

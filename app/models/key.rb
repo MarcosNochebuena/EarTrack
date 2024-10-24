@@ -11,4 +11,8 @@
 class Key < ApplicationRecord
     has_many :earrings
     validates :num_key, :upp, presence: :true
+
+    def self.ransackable_attributes(auth_object = nil)
+        ["created_at", "id", "num_key", "updated_at", "upp"]
+    end
 end
