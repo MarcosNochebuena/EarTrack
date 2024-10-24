@@ -32,4 +32,15 @@ class Earring < ApplicationRecord
 
   validates :age, numericality: { greater_than: 0, only_integer: true }
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["age", "created_at", "earring", "gender", "id", "key_id", "status", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["key"]
+  end
+
+  ransacker :earring do
+    Arel.sql("to_char(earring, '9999999')")
+  end
 end
