@@ -32,9 +32,12 @@ gem "jbuilder"
 gem 'rails-i18n'
 
 #pagination
-gem "pagy"
+gem "pagy", "~> 5.10"
+
+gem "ransack", "~> 3.2"
+
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -65,7 +68,7 @@ gem 'wicked_pdf'
 group :development, :test do
   gem "dotenv-rails"
   gem "annotate"
-  gem "faker", "~> 3.5"
+  gem "faker", "~> 3.0"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -87,5 +90,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "ransack", "~> 4.2"

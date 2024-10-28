@@ -5,23 +5,34 @@
       <h3 class="text-center text-white mx-auto">Claves</h3>
       <%= link_to "Agregar Clave", new_key_path, class: "btn btn-success" %>
     </div>
+
     
     <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Numero de Clave</th>
-            <th>Clave UPP</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="keys">
-          <%= render @keys %>
-        </tbody>
-      </table>
-      <% if @pagy.next %>
-        <%= turbo_frame_tag :pagination, loading: :lazy, src: keys_path(format: :turbo_stream, page: @pagy.next) %>
-      <% end %>
+
+      <div class="container">
+        <div class="row font-weight-bold border-bottom">
+          <div class="col-md-4 text-center">Número de la clave</div>
+          <div class="col-md-4 text-center">Clave UPP</div>
+          <div class="col-md-4 text-center">Acciones</div>
+        </div>
+      
+        <%= search_form_for @q, class: "row g-3 mt-2 mb-4", data: { turbo_frame: :results } do |f| %>
+          <div class="col-md-4">
+            <%= f.search_field :num_key_cont, class: "form-control me-2", placeholder: "Clave", oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
+          </div>
+          <div class="col-md-4"> 
+            <%= f.search_field :upp_cont, class: "form-control", placeholder: "UPP", oninput: 'this.form.requestSubmit()', autocomplete: 'off' %>
+          </div>
+          <div class="col-md-4">
+          </div>
+        <% end %>
+      
+        <%= turbo_frame_tag :results, data: { turbo_action: 'advance' } do %>
+          <div id="keys">
+          </div>
+          <%= turbo_frame_tag :pagination, loading: :lazy, src: keys_path(format: :turbo_stream, q: params[:q]&.to_unsafe_h) %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
