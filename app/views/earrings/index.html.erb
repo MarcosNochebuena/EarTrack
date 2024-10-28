@@ -7,12 +7,12 @@
   <%= link_to "Agregar arete", new_earring_path, class: 'btn btn-success' %>
 </div>
 
-<%= search_form_for @q, remote: true, class: 'row p-3 ms-auto', data: { controller: 'filters' } do |f| %>
+<%= search_form_for @q, class: 'row p-3 ms-auto', data: { turbo_frame: :results } do |f| %>
   <div class="col-auto">
-    <%= f.search_field :earring_cont, class: 'form-control', placeholder: "Número de Arete", data: { action: "input->filters#submitForm"} %>
+    <%= f.search_field :earring_cont, class: 'form-control', placeholder: "Número de Arete",  oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
   </div>
   <div class="col-auto">
-    <%= f.search_field :key_num_key_cont, class: 'form-control', placeholder: "Clave", data: { action: "input->filters#submitForm"} %>
+    <%= f.search_field :key_num_key_cont, class: 'form-control', placeholder: "Clave",  oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
   </div>
   <div class="col-auto d-flex align-items-end">
     <%= f.submit "Buscar", class: "btn btn-primary" %>
@@ -20,13 +20,10 @@
 <% end %>
 
 
-
 <div class="container">
-  <%= turbo_frame_tag :earrings, class:"row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" do %>
-      <%= render @earrings %>
-  <% end %>
-  <% if @pagy.next %>
-    <%= turbo_frame_tag :pagination, loading: :lazy, src: earrings_path(format: :turbo_stream, page: @pagy.next, q: params[:q]&.to_unsafe_h) %>
+  <%= turbo_frame_tag :results, data: { turbo_action: 'advance' } do %>
+      <div id="earrings" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"></div>
+      <%= turbo_frame_tag :pagination, loading: :lazy, src: earrings_path(format: :turbo_stream, q: params[:q]&.to_unsafe_h) %>
   <% end %>
 </div>
 

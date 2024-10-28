@@ -3,13 +3,13 @@ class EarringsController < ApplicationController
 
   # GET /earrings or /earrings.json
   def index
-    @q = Earring.includes(:key).ransack(params[:q])
-    @pagy, @earrings = pagy(@q.result(distinct: true))
+    # @q = Earring.includes(:key).ransack(params[:q])
+    # @pagy, @earrings = pagy(@q.result(distinct: true))
 
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
+    search_params = params.permit(:format, :page, q: [:earring_cont, :key_num_key_cont])
+    @q = Earring.includes(:key).ransack(params[:q])
+    earrings = @q.result(distinct: true).order(created_at: :asc)
+    @pagy, @earrings = pagy_countless(earrings)
   end
 
   # GET /earrings/1 or /earrings/1.json
@@ -75,7 +75,7 @@ class EarringsController < ApplicationController
       params.require(:earring).permit(:key_id, :earring, :status, :age, :gender, :photo)
     end
     
-    def search_params
-      params.fetch(:q, {}).permit(:earring_cont, :key_num_key_eq)
-    end
+    # def search_params
+    #   params.fetch(:q, {}).permit(:earring_cont, :key_num_key_eq)
+    # end
 end
