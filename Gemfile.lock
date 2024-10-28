@@ -153,7 +153,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
-    pagy (9.1.0)
+    pagy (5.10.1)
+      activesupport
     pg (1.5.7)
     pg (1.5.7-x64-mingw-ucrt)
     pg (1.5.7-x86-mingw32)
@@ -195,10 +196,11 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
-    ransack (4.2.1)
+    ransack (3.2.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    redis (4.8.1)
     regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -271,16 +273,17 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
-  faker (~> 3.5)
+  faker (~> 3.0)
   font-awesome-sass (~> 6.4.0)
   importmap-rails
   jbuilder
-  pagy
+  pagy (~> 5.10)
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
   rails-i18n
-  ransack (~> 4.2)
+  ransack (~> 3.2)
+  redis (~> 4.0)
   sassc-rails
   selenium-webdriver
   sprockets-rails

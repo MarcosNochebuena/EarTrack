@@ -3,12 +3,10 @@ class KeysController < ApplicationController
 
   # GET /keys or /keys.json
   def index
-    @pagy, @keys = pagy(Key.all)
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
+    search_params = params.permit(:format, :page, q: [:num_key_cont, :upp_cont])
+    @q = Key.ransack(params[:q])
+    keys = @q.result(distinct: true).order(created_at: :asc)
+    @pagy, @keys = pagy_countless(keys)
   end
 
   # GET /keys/1 or /keys/1.json

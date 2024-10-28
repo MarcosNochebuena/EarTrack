@@ -1,15 +1,19 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="controller"
 export default class extends Controller {
-  static targets = ["form"]
+  static targets = ["form"];
+
   connect() {
-    console.log("FIlTERS CONTROLLER")
+    console.log("Search Controller Connected");
   }
+
   submitForm() {
-    clearTimeout(this.timeout)
+    clearTimeout(this.timeout);
+  
     this.timeout = setTimeout(() => {
-      this.element.requestSubmit()
-    }, 300)
+      // Enviar el formulario utilizando Turbo
+      this.formTarget.requestSubmit();
+    }, 300);
   }
+  
 }
