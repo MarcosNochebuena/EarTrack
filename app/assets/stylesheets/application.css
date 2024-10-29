@@ -14,3 +14,37 @@
  *= require_self
  *= require styles
  */
+
+ .bg-body {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.bg-body::before {
+    content: "";
+    background-image: url('/assets/pastizal.jpg');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.7; /* Ajusta la transparencia aquí */
+    z-index: -1;
+}
+
+
+ .bg-login-image {
+    background-image: url('/assets/login-image3.jpg');
+    background-size: cover;
+    background-position: center;
+  }  
+ .bg-register-image {
+    background-image: url('/assets/login-image2.jpg');
+    background-size: cover;
+    background-position: center;
+  }  
+  

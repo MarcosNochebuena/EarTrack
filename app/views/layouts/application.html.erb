@@ -9,14 +9,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="sb-nav-fixed">
-    <%= render 'shared/navbar' %>
-    <div id="layoutSidenav">
-      <%= render 'shared/sidebar' %>
-      <div id="layoutSidenav_content">
-        <%= yield %>
-        <%= render 'shared/footer' %>
+  <body class="<%= user_signed_in? ? 'sb-nav-fixed' : 'bg-body'%>"> 
+    <% if user_signed_in? %>
+      <%= render 'shared/navbar' %>
+      <div id="layoutSidenav">
+        <%= render 'shared/sidebar' %>
+        <div id="layoutSidenav_content">
+          <%= yield %>
+          <%= render 'shared/footer' %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

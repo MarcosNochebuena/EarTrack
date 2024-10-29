@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :settings, only: [:index, :update, :create]
   get 'reports/index', to: "reports#index", as: "reports"
   resources :earrings
