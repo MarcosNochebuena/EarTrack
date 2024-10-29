@@ -4,6 +4,7 @@
 
 <div class="card-header mb-3 d-flex justify-content-between align-items-center">
   <h3 class="text-center mx-auto">Aretes</h3>
+  <%= link_to 'Descargar Listado', reports_path(format: :pdf), target: '_blank', class: "btn btn-primary me-2" %>
   <%= link_to "Agregar arete", new_earring_path, class: 'btn btn-success' %>
 </div>
 
