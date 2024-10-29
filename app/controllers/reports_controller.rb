@@ -1,12 +1,13 @@
 class ReportsController < ApplicationController
   def index
-    @keys = Key.all
+    @earrings_by_key = Earring.includes(:key).group_by(&:key_id)
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "RegistroAretes_#{Time.year}", template: "reports/pdf/report.html.erb", layout: "pdf",
-               page_size: "Letter",
-               orientation: 'Landscape'
+        render pdf: "RegistroAretes_#{Time.current.year}", template: "reports/pdf/list",
+              formats: [:html],
+              layout: "pdf",
+              page_size: "letter"
       end
     end
   end

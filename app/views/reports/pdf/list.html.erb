@@ -1,0 +1,19 @@
+
+<h1>Listado de Aretes <%= Time.current.year %></h1>
+
+<div class="key-group">
+    <% @earrings_by_key.each_slice(5) do |key_group| %>
+      <div class="table-row">
+        <% key_group.each do |key_id, earrings| %>
+          <div class="table-cell">
+            <h2>Clave: <%= earrings.first.key.num_key %></h2>
+            <ul class="earring-list">
+              <% earrings.each do |earring| %>
+                <li class="earring-item"><%= earring.earring %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
