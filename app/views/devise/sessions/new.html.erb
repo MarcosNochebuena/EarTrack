@@ -1,0 +1,57 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6 mx-auto">
+              <div class="p-5 shadow rounded">
+                <div class="text-center mb-4">
+                  <h1 class="h4 text-primary">¡Bienvenido de nuevo!</h1>
+                </div>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-floating mb-3 position-relative">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Ingresa tu correo" %>
+                    <%= f.label :email, class: "form-label" %>
+                    <i class="fas fa-envelope position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                  </div>
+
+                  <div class="form-floating mb-3 position-relative">
+                    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Contraseña" %>
+                    <%= f.label :password, class: "form-label" %>
+                    <i class="fas fa-lock position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                  </div>
+
+                  <% if devise_mapping.rememberable? %>
+                    <div class="form-check mb-3">
+                      <%= f.check_box :remember_me, class: "form-check-input" %> 
+                      <%= f.label :remember_me, 'Recordarme', class: "form-check-label" %>
+                    </div>
+                  <% end %>
+
+                  <div class="d-grid mb-3">
+                    <%= f.submit "Iniciar sesión", class: "btn btn-primary" %>
+                  </div>
+
+                  <div class="d-grid">
+                    <a href="#" class="btn btn-outline-dark">
+                      <i class="fab fa-google me-2"></i> Iniciar sesión con Google
+                    </a>
+                  </div>
+                <% end %>
+                <hr />
+                <div class="text-center">
+                  <%= render "devise/shared/links" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
