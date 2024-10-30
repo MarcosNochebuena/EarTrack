@@ -28,7 +28,7 @@
           <tr>
             <th class="col-3">Status: </th>
             <td>
-              <%= @earring.status %>
+              <%= t("activerecord.enums.earring.status.#{@earring.status}") %>
             </td>
           </tr>
           <tr>
@@ -40,7 +40,7 @@
           <tr>
             <th class="col-3">Sexo: </th>
             <td>
-              <%= @earring.gender %>
+              <%= t("activerecord.enums.earring.gender.#{@earring.gender}") %>
             </td>
           </tr>
           <tr>
