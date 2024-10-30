@@ -5,8 +5,8 @@
 #  id         :bigint           not null, primary key
 #  age        :integer
 #  earring    :integer
-#  gender     :string
-#  status     :string
+#  gender     :integer
+#  status     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  key_id     :bigint           not null
@@ -23,8 +23,8 @@ class Earring < ApplicationRecord
   belongs_to :key
   has_one_attached :photo 
 
-  enum status: { live: "vivo", dead: "muerto", saled: "vendido" }
-  enum gender: { female: "Hembra", male: "Macho" }
+  enum status: %i[ live dead saled ]
+  enum gender:  %i[ female male ]
 
   validates :earring, :status, :age, :gender,  presence: true
 
