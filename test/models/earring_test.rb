@@ -5,8 +5,8 @@
 #  id         :bigint           not null, primary key
 #  age        :integer
 #  earring    :integer
-#  gender     :string
-#  status     :string
+#  gender     :integer
+#  status     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  key_id     :bigint           not null
