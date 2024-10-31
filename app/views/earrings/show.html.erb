@@ -11,55 +11,52 @@
     </div>
     
     <div class="card-body">
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th class="col-3">Clave: </th>
-            <td>
-              <%= @earring.key.num_key %>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3">Arete: </th>
-            <td>
-              <%= @earring.earring %>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3">Status: </th>
-            <td>
-              <%= t("activerecord.enums.earring.status.#{@earring.status}") %>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3">Edad: </th>
-            <td>
-              <%= @earring.age %>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3">Sexo: </th>
-            <td>
-              <%= t("activerecord.enums.earring.gender.#{@earring.gender}") %>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3">Foto:</th>
-            <td class="align-self-center text-center">
-              <div class="d-flex justify-content-center">
-              
+      <div class="row mb-4">
+        <div class="col-md-8">
+          <div class="card shadow-sm h-100">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Clave:</strong> <span><%= @earring.key.num_key %></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Arete:</strong> <span><%= @earring.earring %></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Status:</strong> <span><%= t("activerecord.enums.earring.status.#{@earring.status}") %></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Edad:</strong> <span><%= @earring.age %> meses</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <strong>Sexo:</strong> <span><%= t("activerecord.enums.earring.gender.#{@earring.gender}") %></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-body h-100">
+            <div class="image-container">
+              <%= image_tag "/arete.png", alt: "Imagen", class: "base-image" %>
+              <svg viewBox="0 0 200 200" class="overlay-text" xmlns="http://www.w3.org/2000/svg">
+                <text x="15%" y="18%" font-size="20" text-anchor="start" fill="black" font-weight="bold"><%= @earring.key.num_key[0..1] %></text>
+                <text x="82%" y="18%" font-size="20" text-anchor="end" fill="black" font-weight="bold"><%= @earring.key.num_key[1..4] %></text>
+                <text x="50%" y="57%" font-size="60" text-anchor="middle" fill="black" font-weight="bold"><%= @earring.earring %></text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row px-3">
+         <div class="card card-body">
+            <div class="d-flex justify-content-center">   
               <% if @earring.photo.present? %>
                 <%= image_tag @earring.photo, class: "rounded img-fluid", width: "400" %>
               <% else %>
                 <p> <strong> Sin fotografía </strong></p>
-              <% end %>
-              
+              <% end %>     
               </div>
-            </td>
-          </tr>
-          
-        </tbody>
-      </table>
+          </div>
+      </div>
     </div>
   </div>
 </div>
