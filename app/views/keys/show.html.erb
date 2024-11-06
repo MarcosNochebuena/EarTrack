@@ -10,23 +10,33 @@
       <%= link_to "Editar Clave", edit_key_path(@key), class: 'btn btn-success' %>
     </div>
     
-    <div class="card-body">
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th class="col-3">Clave: </th>
-            <td>
-              <%= @key.num_key %>
-            </td>
-          </tr>
-          <tr>
-            <th class="col-3">Clave UPP: </th>
-            <td>
-              <%= @key.upp %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card mb-4 shadow-sm">
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-6">
+        <h6 class="fw-bold">Clave:</h6>
+        <p class="mb-0"><%= @key.num_key %></p>
+      </div>
+      <div class="col-6">
+        <h6 class="fw-bold">Clave UPP:</h6>
+        <p class="mb-0"><%= @key.upp %></p>
+      </div>
     </div>
+
+    <h5 class="mt-4 mb-3">Aretes Registrados <%= @key.earrings.count %></h5>
+    <ul class="list-group" style="height: 300px; overflow:auto;">
+      <% if @key.earrings.any? %>
+        <% @key.earrings.each do |earring| %>
+          <li class="list-group-item">
+            <i class="fa-solid fa-circle"></i> <%= earring.earring %>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="list-group-item text-muted">No hay aretes registrados.</li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
   </div>
 </div>
