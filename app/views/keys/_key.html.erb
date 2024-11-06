@@ -2,7 +2,7 @@
   <div class="col-md-4 text-center"><%= key.num_key %></div>
   <div class="col-md-4 text-center"><%= key.upp %></div>
   <div class="col-md-4 d-flex justify-content-end">
-    <%= link_to(key, class: "btn btn-sm me-2 btn-primary" ) do %>
+    <%= link_to(key, class: "btn btn-sm me-2 btn-primary", data: { turbo: false }  ) do %>
       <i class="fa-solid fa-eye text-white"></i>
     <% end %>
     <%= button_to(key, method: :delete, data: { confirm: '¿Está seguro de eliminar la clave?' },
