@@ -22,8 +22,9 @@
   
   <div>
     <%= form.label :upp, class: "form-label mt-2" , value:"Clave UPP" %>
-    <%= form.text_field :upp, class: "form-control", value:"16047345" %>
+    <%= form.text_field :upp, class: "form-control", value: current_user.producer.upp_key %>
   </div>
+  <%= form.hidden_field :producer_id, value: current_user.producer_id %>
 
   <div class="mt-2 align-content-end">
     <%= link_to "Cancelar", keys_path, class: "btn btn-danger" %>

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: settings
+# Table name: producers
 #
 #  id                 :bigint           not null, primary key
 #  produced_adress    :string
@@ -9,13 +9,10 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
+require "test_helper"
 
-one:
-  upp_key: MyString
-  producer_full_name: MyString
-  produced_adress: MyString
-
-two:
-  upp_key: MyString
-  producer_full_name: MyString
-  produced_adress: MyString
+class ProducerTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+end
