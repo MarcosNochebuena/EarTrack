@@ -14,7 +14,7 @@ if Rails.env.development?
   5.times do
     Key.find_or_create_by(
       num_key: Faker::Number.number(digits: 6), 
-      upp: producer.upp_key
+      upp: producer.upp_key,
       producer: producer)
   end
 
