@@ -5,16 +5,17 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: <%= ENV.fetch("database_adapter") %>
+  adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  
+
+development:
+  <<: *default
   username: <%= ENV.fetch("database_username") %>
   password: <%= ENV.fetch("database_password") %>
   host: <%= ENV.fetch("database_host") %>
   port: 5432
-
-development:
-  <<: *default
   database: aretes_db
 
 # Warning: The database defined as "test" will be erased and
@@ -22,8 +23,13 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  username: <%= ENV.fetch("database_username") %>
+  password: <%= ENV.fetch("database_password") %>
+  host: <%= ENV.fetch("database_host") %>
+  port: 5432
   database: aretes_db_test
 
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: earrings_db
