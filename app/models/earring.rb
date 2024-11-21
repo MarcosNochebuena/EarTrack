@@ -26,9 +26,9 @@ class Earring < ApplicationRecord
   enum status: %i[ live dead saled ]
   enum gender:  %i[ female male ]
 
-  validates :earring, :status, :age, :gender,  presence: true
+  validates :earring, :status, :gender, presence: true
 
-  validates :earring, format: { with: /\A\d{4}\z/ }, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :earring, format: { with: /\A\d{4}\z/ }, numericality: { greater_than_or_equal_to: 0, only_integer: true }, uniqueness: true
 
   validates :age, numericality: { greater_than: 0, only_integer: true }
 
