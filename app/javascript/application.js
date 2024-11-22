@@ -1,26 +1,18 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails";
-import "controllers";
+import "@hotwired/turbo-rails";  // Correcto: al nivel superior
+import "controllers";  // Asegúrate de que esté configurado correctamente
 import "@popperjs/core";
-import "bootstrap";
-//= require jquery
-//= require jquery_ujs
+import "bootstrap";  // Esto está bien, asegúrate de que se carga correctamente
+import Swal from 'sweetalert2';  // SweetAlert2 correctamente importado
+window.Swal = Swal;
 
-window.addEventListener('DOMContentLoaded', event => {
-
-    // Toggle the side navigation
+// Tu código personalizado aquí
+window.addEventListener('turbo:load', event => {
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
         sidebarToggle.addEventListener('click', event => {
             event.preventDefault();
             document.body.classList.toggle('sb-sidenav-toggled');
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
-
 });
-  
