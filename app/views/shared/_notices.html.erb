@@ -1,0 +1,53 @@
+<% if notice || alert %>
+  <div id="flash-messages" data-message="<%= j notice || alert %>" data-type="<%= notice ? 'success' : 'error' %>"></div>
+<% end %>
+<% if alert %>
+  <script>
+    showFlashMessage()
+  </script>
+<% end %>
+
+<script>
+document.addEventListener("turbo:load", function() {
+  showFlashMessage();
+});
+document.addEventListener("turbo:before-stream-render", function(event) {
+  console.log("turbo:before-stream-render ejecutado");
+  showFlashMessage();
+});
+
+function showFlashMessage() {
+  const flashMessages = document.getElementById("flash-messages");
+
+  if (flashMessages) {
+    const message = flashMessages.getAttribute("data-message");
+    const type = flashMessages.getAttribute("data-type");
+
+    if (message && type) {
+      showAlert(message, type);
+    }
+  }
+}
+
+function showAlert(message, type) {
+  if (type === 'success') {
+    Swal.fire({
+      position: "top-end",
+      title: message,
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  } else if (type === 'error') {
+    Swal.fire({
+      position: "top-end",
+      title: message,
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+}
+
+</script>
+

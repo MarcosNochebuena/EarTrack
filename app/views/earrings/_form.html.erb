@@ -1,22 +1,22 @@
-<%= form_with(model: earring) do |form| %> <% if earring.errors.any? %>
-<div style="color: red">
-  <h2>
-    <%= pluralize(earring.errors.count, "error" ) %> prohibited this earring
-    from being saved:
-  </h2>
-
-  <ul>
-    <% earring.errors.each do |error| %>
-    <li><%= error.full_message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+<%= form_with(model: earring) do |form| %> 
 <div class="container col-8 card align-content-center p-0 mb-4">
   <div class="card-header bg-dark">
     <h3 class="text-center text-white">Información del Arete</h3>
   </div>
   <div class="card-body border-bottom-success">
+    <% if earring.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">
+          <%= pluralize(earring.errors.count, "error") %> prohibited this earring
+          from being saved:
+        </h4>
+        <ul>
+          <% earring.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="mb-3">
       <%= form.label :key_id, class: "form-label"%> 
       <%= form.collection_select :key_id, Key.all, :id, :num_key, { prompt: "Selecciona una clave" }, { class: "form-select" } %>
