@@ -19,7 +19,7 @@
     <% end %>
     <div class="mb-3">
       <%= form.label :key_id, class: "form-label"%> 
-      <%= form.collection_select :key_id, Key.all, :id, :num_key, { prompt: "Selecciona una clave" }, { class: "form-select" } %>
+      <%= form.collection_select :key_id, Key.all, :id, :num_key, { prompt: "Selecciona una clave" }, { class: "form-select select2" } %>
     </div>
 
     <div class="mb-3">
