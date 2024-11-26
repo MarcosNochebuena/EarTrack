@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def index
-    @earrings_by_key = Earring.includes(:key).group_by(&:key_id)
+    @earrings_by_key = Earring.where(status: :live).includes(:key).group_by(&:key_id)
     respond_to do |format|
       format.html
       format.pdf do

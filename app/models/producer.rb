@@ -13,6 +13,6 @@ class Producer < ApplicationRecord
   has_many :users
   has_many :keys
   has_many :earrings, through: :keys
-  validates :upp_key, presence: true
-  validates :producer_full_name, presence: true
+  validates :upp_key, presence: true, uniqueness: true
+  validates :producer_full_name, presence: true, uniqueness: true
 end

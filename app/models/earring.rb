@@ -26,11 +26,11 @@ class Earring < ApplicationRecord
   enum status: %i[ live dead saled ]
   enum gender:  %i[ female male ]
 
-  validates :earring, :status, :age, :gender,  presence: true
+  validates :earring, :status, :gender, presence: true
 
-  validates :earring, format: { with: /\A\d{4}\z/ }, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :earring, format: { with: /\A\d{4}\z/ }, numericality: { greater_than_or_equal_to: 0, only_integer: true }, uniqueness: true
 
-  validates :age, numericality: { greater_than: 0, only_integer: true }
+  validates :age, numericality: { greater_than: 0, only_integer: true }, if: -> { age.present? }
 
   def self.ransackable_attributes(auth_object = nil)
     ["age", "created_at", "earring", "gender", "id", "key_id", "status", "updated_at"]

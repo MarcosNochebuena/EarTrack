@@ -21,6 +21,7 @@ class Key < ApplicationRecord
     belongs_to :producer
     has_many :earrings
     validates :num_key, :upp, presence: :true
+    validates :num_key, uniqueness: { scope: :producer_id }
 
     def self.ransackable_attributes(auth_object = nil)
         ["created_at", "id", "num_key", "updated_at", "upp"]

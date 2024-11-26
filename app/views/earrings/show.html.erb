@@ -39,7 +39,7 @@
               <%= image_tag "/arete.png", alt: "Imagen", class: "base-image" %>
               <svg viewBox="0 0 200 200" class="overlay-text" xmlns="http://www.w3.org/2000/svg">
                 <text x="15%" y="18%" font-size="20" text-anchor="start" fill="black" font-weight="bold"><%= @earring.key.num_key[0..1] %></text>
-                <text x="82%" y="18%" font-size="20" text-anchor="end" fill="black" font-weight="bold"><%= @earring.key.num_key[1..4] %></text>
+                <text x="82%" y="18%" font-size="20" text-anchor="end" fill="black" font-weight="bold"><%= @earring.key.num_key[-4..-1] %></text>
                 <text x="50%" y="57%" font-size="60" text-anchor="middle" fill="black" font-weight="bold"><%= @earring.earring %></text>
               </svg>
             </div>
