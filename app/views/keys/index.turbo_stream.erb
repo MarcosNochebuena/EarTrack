@@ -2,6 +2,10 @@
   <%= render @keys %>
 <% end %>
 
+<%= turbo_stream.replace "keys-count" do %>
+  <span id="keys-count"><%= @keys_count %></span>
+<% end %>
+
 <% if @pagy.next.present? %>
   <%= turbo_stream.replace :pagination do %>
     <%= turbo_frame_tag :pagination, loading: :lazy, src: keys_path(format: :turbo_stream, page: @pagy.next, q: params[:q]&.to_unsafe_h) %>

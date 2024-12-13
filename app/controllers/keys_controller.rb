@@ -5,7 +5,8 @@ class KeysController < ApplicationController
   def index
     search_params = params.permit(:format, :page, q: [:num_key_cont, :upp_cont])
     @q = Key.ransack(params[:q])
-    keys = @q.result(distinct: true).where(producer: current_user.producer).order(created_at: :desc)
+    keys = @q.result.where(producer: current_user.producer).order(created_at: :desc)
+    @keys_count = keys.count
     @pagy, @keys = pagy_countless(keys)
   end
 

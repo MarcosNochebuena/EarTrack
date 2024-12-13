@@ -8,7 +8,8 @@ class EarringsController < ApplicationController
 
     search_params = params.permit(:format, :page, q: [:earring_cont, :key_num_key_cont])
     @q = Earring.includes(:key).ransack(params[:q])
-    earrings = @q.result(distinct: true).where(key: {producer: current_user.producer}).order(created_at: :desc)
+    earrings = @q.result.where(keys: {producer: current_user.producer}).order(created_at: :desc)
+    @live_earrings_count = earrings.where(status: :live).count
     @pagy, @earrings = pagy_countless(earrings)
   end
 
