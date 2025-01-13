@@ -57,6 +57,8 @@ gem "bootstrap", "~> 5.2.0"
 # Use Sass to process CSS
 gem "sassc-rails"
 
+gem 'chartkick'
+gem 'groupdate'
 #WicketPDF
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
