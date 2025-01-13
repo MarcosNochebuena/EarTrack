@@ -8,3 +8,5 @@ window.Swal = Swal;
 import "template/jquery-import";
 import "select2";
 import "template/template";
+import "chartkick"
+import "Chart.bundle"
