@@ -1,0 +1,15 @@
+<%= turbo_stream.append :earrings do %>
+  <%= render @earrings %>
+<% end %>
+
+<%= turbo_stream.replace "live-earrings-count" do %>
+  <span id="live-earrings-count"><%= @live_earrings_count %></span>
+<% end %>
+
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace :pagination do %>
+    <%= turbo_frame_tag :pagination,
+                loading: :lazy,
+        src: earrings_path(format: :turbo_stream, page: @pagy.next, q: params[:q]&.to_unsafe_h) %>
+  <% end %>
+<% end %>

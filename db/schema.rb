@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_21_232547) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_14_235257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,9 +45,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_21_232547) do
   create_table "earrings", force: :cascade do |t|
     t.bigint "key_id", null: false
     t.integer "earring"
-    t.string "status"
+    t.integer "status"
     t.integer "age"
-    t.string "gender"
+    t.integer "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["key_id"], name: "index_earrings_on_key_id"
@@ -58,9 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_21_232547) do
     t.string "upp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "producer_id"
+    t.index ["producer_id"], name: "index_keys_on_producer_id"
   end
 
-  create_table "settings", force: :cascade do |t|
+  create_table "producers", force: :cascade do |t|
     t.string "upp_key"
     t.string "producer_full_name"
     t.string "produced_adress"
@@ -68,7 +70,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_21_232547) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: ""
+    t.string "phone_number", default: ""
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "producer_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["producer_id"], name: "index_users_on_producer_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "earrings", "keys"
+  add_foreign_key "keys", "producers"
+  add_foreign_key "users", "producers"
 end

@@ -1,20 +1,22 @@
 <%= form_with(model: key) do |form| %>
-  <% if key.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(key.errors.count, "error") %> prohibited this key from being saved:</h2>
-
-      <ul>
-        <% key.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 <div class="container col-8 card align-content-center p-0 mb-4">
-  <div class="card-header bg-dark">
-    <h3 class="text-center text-white">Información de la Clave</h3>
+  <div class="card-header bg-main">
+    <h3 class="text-center">Información de la Clave</h3>
   </div>
   <div class="card-body">
+    <% if key.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">
+          <%= pluralize(key.errors.count, "error") %> prohibited this key
+          from being saved:
+        </h4>
+        <ul>
+          <% key.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <div>
     <%= form.label :num_key, class: "form-label" , value:"Número de clave" %>
     <%= form.text_field :num_key, class: "form-control" %>
@@ -22,8 +24,9 @@
   
   <div>
     <%= form.label :upp, class: "form-label mt-2" , value:"Clave UPP" %>
-    <%= form.text_field :upp, class: "form-control", value:"16047345" %>
+    <%= form.text_field :upp, class: "form-control", value: current_user.producer.upp_key %>
   </div>
+  <%= form.hidden_field :producer_id, value: current_user.producer_id %>
 
   <div class="mt-2 align-content-end">
     <%= link_to "Cancelar", keys_path, class: "btn btn-danger" %>

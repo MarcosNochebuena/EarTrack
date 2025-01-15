@@ -1,11 +1,13 @@
 <div class="card-body">
-  <%= form_with(model: @setting) do |form| %>
-    <% if @setting.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this @setting from being saved:</h2>
-
+  <%= form_with(model: @producer) do |form| %>
+    <% if @producer.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">
+          <%= pluralize(@producer.errors.count, "error") %> prohibited this producer
+          from being saved:
+        </h4>
         <ul>
-          <% @setting.errors.each do |error| %>
+          <% @producer.errors.each do |error| %>
             <li><%= error.full_message %></li>
           <% end %>
         </ul>
@@ -28,7 +30,7 @@
     </div>
 
    <div class="mt-2 text-end">
-     <%= link_to "Cancelar", settings_path, class: "btn btn-danger" %>
+     <%= link_to "Cancelar", producers_path, class: "btn btn-danger" %>
      <%= form.submit "Guardar", class: "btn btn-success" %>
    </div>
   <% end %>

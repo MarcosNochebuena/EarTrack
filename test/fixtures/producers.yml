@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: producers
+#
+#  id                 :bigint           not null, primary key
+#  produced_adress    :string
+#  producer_full_name :string
+#  upp_key            :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+one:
+  upp_key: MyString
+  producer_full_name: MyString
+  produced_adress: MyString
+
+two:
+  upp_key: MyString
+  producer_full_name: MyString
+  produced_adress: MyString

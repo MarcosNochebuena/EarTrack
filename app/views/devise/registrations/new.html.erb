@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-7">
+              <div class="p-5 shadow rounded">
+                <div class="text-center">
+                  <h1 class="h4 text-primary mb-4">Crear cuenta</h1>
+                </div>
+
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> 
+                  <%= render "devise/shared/error_messages", resource: resource %>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <div class="form-floating position-relative">
+                        <%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "Nombre" %>
+                        <%= f.label :first_name, "Nombre", class: "form-label" %>
+                        <i class="fas fa-user position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating position-relative">
+                        <%= f.text_field :last_name, class: "form-control", placeholder: "Apellido" %>
+                        <%= f.label :last_name, "Apellido", class: "form-label" %>
+                        <i class="fas fa-user position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <div class="form-floating position-relative">
+                        <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: "Correo Electrónico" %>
+                        <%= f.label :email, "Correo Electrónico", class: "form-label" %>
+                        <i class="fas fa-envelope position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating position-relative">
+                        <%= f.number_field :phone_number, class: "form-control", placeholder: "Teléfono" %>
+                        <%= f.label :phone_number, "Teléfono", class: "form-label" %>
+                        <i class="fas fa-phone position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <div class="form-floating position-relative">
+                        <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
+                        <%= f.label :password, "Contraseña", class: "form-label" %>
+                        <i class="fas fa-lock position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-floating position-relative">
+                        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirmar Contraseña" %>
+                        <%= f.label :password_confirmation, "Confirmar Contraseña", class: "form-label" %>
+                        <i class="fas fa-lock position-absolute text-muted" style="right: 15px; top: 15px;"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-grid mb-3">
+                    <%= f.submit "Crear cuenta", class: "btn btn-primary btn-lg" %>
+                  </div>
+                <% end %>
+
+                <hr />
+                <div class="text-center">
+                  <%= render "devise/shared/links" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

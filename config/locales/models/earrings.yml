@@ -1,0 +1,22 @@
+es:
+  activerecord:
+    models:
+      earring:
+        one: "Arete"
+        other: "Aretes"
+
+    attributes:
+      earring:
+        age: "Edad"
+        earring: "Número de Arete"
+        gender: "Sexo"
+        status: "Status"
+    enums:
+      earring:
+        status:
+          live: "Vivo"
+          dead: "Muerto"
+          saled: "Vendido"
+        gender:
+          female: "Hembra"
+          male: "Macho"

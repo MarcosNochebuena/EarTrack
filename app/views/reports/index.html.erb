@@ -1,27 +1,13 @@
 <h1>Reportes</h1>
 <div class="container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <% @keys.each do |k| %>
-          <th><%= k.num_key %></th>
+  <% @earrings_by_key.each do |key_id, earrings| %>
+    <div class="key-group">
+      <h2>Key ID: <%= key_id %></h2>
+      <ul>
+        <% earrings.each do |earring| %>
+          <li>Arete ID: <%= earring.id %> - Número: <%= earring.earring %></li>
         <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% if @keys.present? %>
-      <% (0..(@keys&.map { |k| k.earrings.length }.max - 1)).each do |index| %>
-        <tr>
-          <% @keys.each do |k| %>
-            <% if k.earrings[index] %>
-              <td><%= k.earrings[index].earring %></td>
-            <% else %>
-              <td></td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </ul>
+    </div>
+  <% end %>
 </div>

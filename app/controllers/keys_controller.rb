@@ -3,7 +3,11 @@ class KeysController < ApplicationController
 
   # GET /keys or /keys.json
   def index
-    @keys = Key.all
+    search_params = params.permit(:format, :page, q: [:num_key_cont, :upp_cont])
+    @q = Key.ransack(params[:q])
+    keys = @q.result.where(producer: current_user.producer).order(created_at: :desc)
+    @keys_count = keys.count
+    @pagy, @keys = pagy_countless(keys)
   end
 
   # GET /keys/1 or /keys/1.json
@@ -65,6 +69,6 @@ class KeysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def key_params
-      params.require(:key).permit(:num_key, :upp)
+      params.require(:key).permit(:num_key, :upp, :producer_id)
     end
 end
