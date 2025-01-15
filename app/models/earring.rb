@@ -32,6 +32,8 @@ class Earring < ApplicationRecord
 
   validates :age, numericality: { greater_than: 0, only_integer: true }, if: -> { age.present? }
 
+  validate :acceptable_image
+
   def self.ransackable_attributes(auth_object = nil)
     ["age", "created_at", "earring", "gender", "id", "key_id", "status", "updated_at"]
   end
@@ -42,5 +44,24 @@ class Earring < ApplicationRecord
 
   ransacker :earring do
     Arel.sql("to_char(earring, '9999999')")
+  end
+
+  def photo_webp
+    photo.variant(resize_to_limit: [800, 800], format: :webp, saver:{ subsample_mode: "on", strip: true, interlace: true, lossless: false, quality: 75}).processed
+  end
+
+  private
+
+  def acceptable_image
+    return unless photo.attached?
+
+    unless photo.byte_size <= 5.megabytes
+      errors.add(:photo, "es muy grande")
+    end
+
+    acceptable_types = ["image/png", "image/jpg", "image/jpeg", "image/webp"]
+    unless acceptable_types.include?(photo.content_type)
+      errors.add(:photo, "debe ser un PNG, JPG, JPEG, o WEBP")
+    end
   end
 end
