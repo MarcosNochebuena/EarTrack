@@ -1,53 +1,66 @@
-<% if notice || alert %>
-  <div id="flash-messages" data-message="<%= j notice || alert %>" data-type="<%= notice ? 'success' : 'error' %>"></div>
-<% end %>
-<% if alert %>
-  <script>
-    showFlashMessage()
-  </script>
-<% end %>
+<div id="flash-messages">
+  <%= render 'shared/flash_content' %>
+</div>
 
 <script>
 document.addEventListener("turbo:load", function() {
   showFlashMessage();
 });
+
 document.addEventListener("turbo:before-stream-render", function(event) {
-  console.log("turbo:before-stream-render ejecutado");
+  if (event.detail.newStream && event.detail.newStream.target === "flash-messages") {
+    setTimeout(showFlashMessage, 100);
+  }
+});
+
+document.addEventListener("turbo:frame-render", function(event) {
   showFlashMessage();
 });
 
 function showFlashMessage() {
   const flashMessages = document.getElementById("flash-messages");
+  console.log("Flash messages element:", flashMessages);
 
   if (flashMessages) {
-    const message = flashMessages.getAttribute("data-message");
-    const type = flashMessages.getAttribute("data-type");
+    // Buscar el span dentro del flash-messages
+    const messageSpan = flashMessages.querySelector("span");
 
-    if (message && type) {
-      showAlert(message, type);
+    if (messageSpan) {
+      const message = messageSpan.getAttribute("data-message");
+      const type = messageSpan.getAttribute("data-type");
+
+      if (message && type) {
+        showAlert(message, type);
+      }
     }
   }
 }
 
 function showAlert(message, type) {
+  const commonConfig = {
+    position: "top-end",
+    title: message,
+    showConfirmButton: false,
+    timer: type === 'error' ? 3000 : 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  };
+
   if (type === 'success') {
     Swal.fire({
-      position: "top-end",
-      title: message,
+      ...commonConfig,
       icon: "success",
-      showConfirmButton: false,
-      timer: 1500
+      toast: true
     });
   } else if (type === 'error') {
     Swal.fire({
-      position: "top-end",
-      title: message,
+      ...commonConfig,
       icon: "error",
-      showConfirmButton: false,
-      timer: 1500
+      toast: true
     });
   }
 }
-
 </script>
-

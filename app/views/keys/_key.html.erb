@@ -1,12 +1,13 @@
-<div class="row" id="<%= dom_id key %>">
+<div class="row" id="<%= dom_id key %>" data-controller="keys" data-keys-key-id-value="<%= key.id %>">
   <div class="col-md-4 text-center"><%= key.num_key %></div>
   <div class="col-md-4 text-center"><%= key.upp %></div>
   <div class="col-md-4 d-flex justify-content-end">
     <%= link_to(key, class: "btn btn-sm me-2 btn-primary", data: { turbo: false }  ) do %>
       <i class="fa-solid fa-eye text-white"></i>
     <% end %>
-    <%= button_to(key, method: :delete, data: { confirm: '¿Está seguro de eliminar la clave?' },
-        class: "btn btn-danger btn-sm" ) do %><i class="fa-solid fa-trash"></i>
-    <% end %> </div>
+    <%= button_tag type: "button", class: "btn btn-danger btn-sm", data: { action: "click->keys#delete" } do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </div>
 </div>
 <hr>

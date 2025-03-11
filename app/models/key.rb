@@ -19,7 +19,7 @@
 #
 class Key < ApplicationRecord
     belongs_to :producer
-    has_many :earrings
+    has_many :earrings, dependent: :destroy
     validates :num_key, :upp, presence: :true
     validates :num_key, uniqueness: { scope: :producer_id }
 

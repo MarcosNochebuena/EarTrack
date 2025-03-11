@@ -57,11 +57,47 @@ class EarringsController < ApplicationController
 
   # DELETE /earrings/1 or /earrings/1.json
   def destroy
-    @earring.destroy
+    begin
+      # Intentar eliminar el arete
+      if @earring.destroy
+        respond_to do |format|
+          format.html { redirect_to earrings_path, notice: "El arete fue eliminado correctamente." }
+          format.turbo_stream do
+            flash_turbo_stream_with_notice("El arete fue eliminado correctamente.", [turbo_stream.remove(@earring)])
+          end
+          format.json { head :no_content }
+        end
+      else
+        # Si destroy devuelve false (por ejemplo, debido a callbacks)
+        error_message = @earring.errors.full_messages.join(", ")
+        error_message = "No se pudo eliminar el arete. Ocurrió un error inesperado." if error_message.blank?
 
-    respond_to do |format|
-      format.html { redirect_to earrings_path, notice: "Earring was successfully destroyed." }
-      format.json { head :no_content }
+        respond_to do |format|
+          format.html { redirect_to earrings_path, alert: error_message }
+          format.turbo_stream do
+            flash_turbo_stream_with_alert(error_message)
+          end
+          format.json { render json: { error: error_message }, status: :unprocessable_entity }
+        end
+      end
+    rescue ActiveRecord::RecordNotFound
+      # Si el arete ya fue eliminado o no existe
+      respond_to do |format|
+        format.html { redirect_to earrings_path, alert: "El arete ya fue eliminado o no existe." }
+        format.turbo_stream do
+          flash_turbo_stream_with_alert("El arete ya fue eliminado o no existe.")
+        end
+        format.json { head :not_found }
+      end
+    rescue StandardError => e
+      # Para cualquier otro error inesperado
+      respond_to do |format|
+        format.html { redirect_to earrings_path, alert: "Error al eliminar el arete: #{e.message}" }
+        format.turbo_stream do
+          flash_turbo_stream_with_alert("Error al eliminar el arete: #{e.message}")
+        end
+        format.json { render json: { error: e.message }, status: :internal_server_error }
+      end
     end
   end
 
@@ -75,7 +111,7 @@ class EarringsController < ApplicationController
     def earring_params
       params.require(:earring).permit(:key_id, :earring, :status, :age, :gender, :photo)
     end
-    
+
     # def search_params
     #   params.fetch(:q, {}).permit(:earring_cont, :key_num_key_eq)
     # end
