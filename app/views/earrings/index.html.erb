@@ -17,10 +17,9 @@
 <% end %>
 
 
-<div class="container">
+<div class="container" data-controller="earrings">
   <%= turbo_frame_tag :results, data: { turbo_action: 'advance' } do %>
       <div id="earrings" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"></div>
       <%= turbo_frame_tag :pagination, loading: :lazy, src: earrings_path(format: :turbo_stream, q: params[:q]&.to_unsafe_h) %>
   <% end %>
 </div>
-

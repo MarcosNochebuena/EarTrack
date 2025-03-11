@@ -1,0 +1,7 @@
+<% if notice %>
+  <span data-message="<%= j notice %>" data-type="success"></span>
+<% elsif alert %>
+  <span data-message="<%= j alert %>" data-type="error"></span>
+<% else %>
+  <span data-message="" data-type=""></span>
+<% end %>

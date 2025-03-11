@@ -3,7 +3,7 @@ class KeysController < ApplicationController
 
   # GET /keys or /keys.json
   def index
-    search_params = params.permit(:format, :page, q: [:num_key_cont, :upp_cont])
+    # search_params = params.permit(:format, :page, q: [:num_key_cont, :upp_cont])
     @q = Key.ransack(params[:q])
     keys = @q.result.where(producer: current_user.producer).order(created_at: :desc)
     @keys_count = keys.count
@@ -53,11 +53,70 @@ class KeysController < ApplicationController
 
   # DELETE /keys/1 or /keys/1.json
   def destroy
-    @key.destroy
+    begin
+      earrings_count = @key.earrings.count
+      has_earrings = earrings_count > 0
+
+      # Intentar eliminar la clave (y sus aretes asociados gracias a dependent: :destroy)
+      if @key.destroy
+        success_message = if has_earrings
+                            "La clave y sus #{earrings_count} aretes asociados fueron eliminados correctamente."
+                          else
+                            "La clave fue eliminada correctamente."
+                          end
+
+        respond_to do |format|
+          format.html { redirect_to keys_url, notice: success_message }
+          format.turbo_stream do
+            flash_turbo_stream_with_notice(success_message, [turbo_stream.remove(@key)])
+          end
+          format.json { head :no_content }
+        end
+      else
+        # Si destroy devuelve false (por ejemplo, debido a callbacks)
+        error_message = @key.errors.full_messages.join(", ")
+        error_message = "No se pudo eliminar la clave. Ocurrió un error inesperado." if error_message.blank?
+
+        respond_to do |format|
+          format.html { redirect_to keys_url, alert: error_message }
+          format.turbo_stream do
+            flash_turbo_stream_with_alert(error_message)
+          end
+          format.json { render json: { error: error_message }, status: :unprocessable_entity }
+        end
+      end
+    rescue ActiveRecord::RecordNotFound
+      # Si la clave ya fue eliminada o no existe
+      respond_to do |format|
+        format.html { redirect_to keys_url, alert: "La clave ya fue eliminada o no existe." }
+        format.turbo_stream do
+          flash_turbo_stream_with_alert("La clave ya fue eliminada o no existe.")
+        end
+        format.json { head :not_found }
+      end
+    rescue StandardError => e
+      # Para cualquier otro error inesperado
+      respond_to do |format|
+        format.html { redirect_to keys_url, alert: "Error al eliminar la clave: #{e.message}" }
+        format.turbo_stream do
+          flash_turbo_stream_with_alert("Error al eliminar la clave: #{e.message}")
+        end
+        format.json { render json: { error: e.message }, status: :internal_server_error }
+      end
+    end
+  end
+
+  # GET /keys/1/check_associations
+  def check_associations
+    @key = Key.find(params[:id])
+    has_associations = @key.earrings.exists?
 
     respond_to do |format|
-      format.html { redirect_to keys_url, notice: "Key was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { has_associations: has_associations, count: @key.earrings.count } }
+    end
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.json { render json: { error: "Clave no encontrada" }, status: :not_found }
     end
   end
 
