@@ -1,15 +1,11 @@
-<p style="color: green">
-  <%= notice %>
-</p>
-
 <div class="container">
   <div class="card">
     <div class="card-header bg-main d-flex justify-content-between align-items-center">
       <%= link_to "Atras" , earrings_path, class: "btn btn-secondary" %>
-      <h1 class="text-center mx-auto">Datos de <%= @earring.earring %></h1>
+      <h1 class="text-center mx-auto"><%= t('earrings.data_to') %> <%= @earring.earring %></h1>
       <%= link_to "Editar Arete", edit_earring_path(@earring), class: 'btn btn-success' %>
     </div>
-    
+
     <div class="card-body">
       <div class="row mb-4">
         <div class="col-md-8">
@@ -48,12 +44,12 @@
       </div>
       <div class="row px-3">
          <div class="card card-body">
-            <div class="d-flex justify-content-center">   
+            <div class="d-flex justify-content-center">
               <% if @earring.photo.present? %>
                 <%= image_tag @earring.photo_webp, class: "rounded img-fluid", width: "400" %>
               <% else %>
-                <p> <strong> Sin fotografía </strong></p>
-              <% end %>     
+                <p> <strong> <%= t('earrings.show_no_photo') %> </strong></p>
+              <% end %>
               </div>
           </div>
       </div>
@@ -73,4 +69,4 @@
       <%= render "form", earring: @earring %>
     </div>
   </div>
-</div>  
+</div>

@@ -2,29 +2,29 @@
 	<nav class="sb-sidenav accordion bg-main" id="sidenavAccordion">
 		<div class="sb-sidenav-menu">
 			<div class="nav">
-				<div class="sb-sidenav-menu-heading">Administrar</div>
+				<div class="sb-sidenav-menu-heading"><%= t('sidebar.manage') %></div>
 				<a class="nav-link" href="<%= root_path %>">
 					<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-					Panel del productor
+					<%= t('sidebar.producer_panel') %>
 				</a>
-				<div class="sb-sidenav-menu-heading">Modulos</div>
+				<div class="sb-sidenav-menu-heading"><%= t('sidebar.modules') %></div>
 				<a class="nav-link" href="<%= earrings_path %>">
 					<div class="sb-nav-link-icon"><i class="fa-solid fa-cow"></i></div>
-					Aretes
+					<%= t('sidebar.earrings') %>
 				</a>
 				<a class="nav-link collapsed" href="<%= keys_path %>">
 					<div class="sb-nav-link-icon"><i class="fa-brands fa-hashnode"></i></div>
-					Claves
+					<%= t('sidebar.keys') %>
 				</a>
-				<!--<div class="sb-sidenav-menu-heading">Reportes</div>
+				<!--<div class="sb-sidenav-menu-heading"><%= t('sidebar.reports') %></div>
 				<a class="nav-link" href="<%= reports_path %>">
 					<div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
-					Listado de aretes
+					<%= t('sidebar.earrings_list') %>
 				</a> -->
-				<div class="sb-sidenav-menu-heading">Ajustes</div>
+				<div class="sb-sidenav-menu-heading"><%= t('sidebar.settings') %></div>
 				<a class="nav-link" href="<%= producers_path %>">
 					<div class="sb-nav-link-icon"><i class="fa-solid fa-gears"></i></div>
-					Configuraciones
+					<%= t('sidebar.configurations') %>
 				</a>
 			</div>
 		</div>

@@ -1,18 +1,18 @@
 <div class="card-header mb-3 d-flex justify-content-between align-items-center">
-  <h3 class="text-center mx-auto">Aretes (<span id="live-earrings-count"></span>)</h3>
-  <%= link_to 'Descargar Listado', reports_path(format: :pdf), target: '_blank', class: "btn btn-primary me-2" if @earrings.count > 0 %>
-  <%= link_to "Agregar arete", new_earring_path, class: 'btn btn-success' %>
+  <h3 class="text-center mx-auto"><%= t('earrings.title') %> (<span id="live-earrings-count"></span>)</h3>
+  <%= link_to t('earrings.download_list'), reports_path(format: :pdf), target: '_blank', class: "btn btn-primary me-2" if @earrings.count > 0 %>
+  <%= link_to t('earrings.add_earring'), new_earring_path, class: 'btn btn-success' %>
 </div>
 
 <%= search_form_for @q, class: 'row p-3 ms-auto', data: { turbo_frame: :results } do |f| %>
   <div class="col-auto">
-    <%= f.search_field :earring_cont, class: 'form-control', placeholder: "Número de Arete",  oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
+    <%= f.search_field :earring_cont, class: 'form-control', placeholder: t('earrings.search.earring_number'),  oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
   </div>
   <div class="col-auto">
-    <%= f.search_field :key_num_key_cont, class: 'form-control', placeholder: "Clave",  oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
+    <%= f.search_field :key_num_key_cont, class: 'form-control', placeholder: t('earrings.search.key'),  oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
   </div>
   <div class="col-auto d-flex align-items-end">
-    <%= f.submit "Buscar", class: "btn btn-primary" %>
+    <%= f.submit t('earrings.search.search_button'), class: "btn btn-primary" %>
   </div>
 <% end %>
 

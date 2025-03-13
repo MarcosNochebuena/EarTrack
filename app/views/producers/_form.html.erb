@@ -3,8 +3,7 @@
     <% if @producer.errors.any? %>
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">
-          <%= pluralize(@producer.errors.count, "error") %> prohibited this producer
-          from being saved:
+          <%= t('producers.errors.prohibited', count: @producer.errors.count) %>
         </h4>
         <ul>
           <% @producer.errors.each do |error| %>

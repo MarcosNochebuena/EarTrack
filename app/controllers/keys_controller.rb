@@ -29,7 +29,7 @@ class KeysController < ApplicationController
 
     respond_to do |format|
       if @key.save
-        format.html { redirect_to key_url(@key), notice: "Key was successfully created." }
+        format.html { redirect_to key_url(@key), notice: t('keys.messages.correct_delete') }
         format.json { render :show, status: :created, location: @key }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class KeysController < ApplicationController
   def update
     respond_to do |format|
       if @key.update(key_params)
-        format.html { redirect_to key_url(@key), notice: "Key was successfully updated." }
+        format.html { redirect_to key_url(@key), notice: t('keys.messages.correct_update') }
         format.json { render :show, status: :ok, location: @key }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,9 +60,9 @@ class KeysController < ApplicationController
       # Intentar eliminar la clave (y sus aretes asociados gracias a dependent: :destroy)
       if @key.destroy
         success_message = if has_earrings
-                            "La clave y sus #{earrings_count} aretes asociados fueron eliminados correctamente."
+                            t('keys.messages.correct_delete_with_earrings', count: earrings_count)
                           else
-                            "La clave fue eliminada correctamente."
+                            t('keys.messages.correct_delete')
                           end
 
         respond_to do |format|
@@ -75,7 +75,7 @@ class KeysController < ApplicationController
       else
         # Si destroy devuelve false (por ejemplo, debido a callbacks)
         error_message = @key.errors.full_messages.join(", ")
-        error_message = "No se pudo eliminar la clave. Ocurrió un error inesperado." if error_message.blank?
+        error_message = t('keys.errors.error') if error_message.blank?
 
         respond_to do |format|
           format.html { redirect_to keys_url, alert: error_message }
@@ -88,18 +88,18 @@ class KeysController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       # Si la clave ya fue eliminada o no existe
       respond_to do |format|
-        format.html { redirect_to keys_url, alert: "La clave ya fue eliminada o no existe." }
+        format.html { redirect_to keys_url, alert: t('keys.errors.not_found') }
         format.turbo_stream do
-          flash_turbo_stream_with_alert("La clave ya fue eliminada o no existe.")
+          flash_turbo_stream_with_alert(t('keys.errors.not_found'))
         end
         format.json { head :not_found }
       end
     rescue StandardError => e
       # Para cualquier otro error inesperado
       respond_to do |format|
-        format.html { redirect_to keys_url, alert: "Error al eliminar la clave: #{e.message}" }
+        format.html { redirect_to keys_url, alert: t('keys.errors.error_unexpected') }
         format.turbo_stream do
-          flash_turbo_stream_with_alert("Error al eliminar la clave: #{e.message}")
+          flash_turbo_stream_with_alert(t('keys.errors.error_unexpected'))
         end
         format.json { render json: { error: e.message }, status: :internal_server_error }
       end
@@ -116,7 +116,7 @@ class KeysController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound
     respond_to do |format|
-      format.json { render json: { error: "Clave no encontrada" }, status: :not_found }
+      format.json { render json: { error: t('keys.errors.not_found') }, status: :not_found }
     end
   end
 

@@ -1,14 +1,13 @@
 <%= form_with(model: key) do |form| %>
 <div class="container col-8 card align-content-center p-0 mb-4">
   <div class="card-header bg-main">
-    <h3 class="text-center">Información de la Clave</h3>
+    <h3 class="text-center"><%= t('keys.form.key_info') %></h3>
   </div>
   <div class="card-body">
     <% if key.errors.any? %>
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">
-          <%= pluralize(key.errors.count, "error") %> prohibited this key
-          from being saved:
+          <%= t('keys.errors.prohibited', count: key.errors.count) %>
         </h4>
         <ul>
           <% key.errors.each do |error| %>
@@ -18,19 +17,19 @@
       </div>
     <% end %>
   <div>
-    <%= form.label :num_key, class: "form-label" , value:"Número de clave" %>
+    <%= form.label :num_key, class: "form-label"%>
     <%= form.text_field :num_key, class: "form-control" %>
   </div>
-  
+
   <div>
-    <%= form.label :upp, class: "form-label mt-2" , value:"Clave UPP" %>
-    <%= form.text_field :upp, class: "form-control", value: current_user.producer.upp_key %>
+    <%= form.label :upp, class: "form-label mt-2"%>
+    <%= form.text_field :upp, class: "form-control", value: current_user.producer.upp_key, disabled: true %>
   </div>
   <%= form.hidden_field :producer_id, value: current_user.producer_id %>
 
   <div class="mt-2 align-content-end">
-    <%= link_to "Cancelar", keys_path, class: "btn btn-danger" %>
-    <%= form.submit "Guardar", class: "btn btn-success" %>
+    <%= link_to t('keys.form.cancel'), keys_path, class: "btn btn-danger" %>
+    <%= form.submit t('keys.form.save'), class: "btn btn-success" %>
   </div>
   <% end %>
 </div>

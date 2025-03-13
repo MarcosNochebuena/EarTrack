@@ -1,42 +1,37 @@
-<p style="color: green">
-  <%= notice %>
-</p>
-
 <div class="container">
   <div class="card">
     <div class="card-header bg-main d-flex justify-content-between align-items-center">
       <%= link_to "Atras" , keys_path, class: "btn btn-secondary" %>
-      <h1 class=" text-center mx-auto">Datos de la clave: <%= @key.num_key %></h1>
-      <%= link_to "Editar Clave", edit_key_path(@key), class: 'btn btn-success' %>
+      <h1 class=" text-center mx-auto"><%= t('keys.show_key') %></h1>
+      <%= link_to t('keys.edit_key'), edit_key_path(@key), class: 'btn btn-success' %>
     </div>
-    
+
     <div class="card mb-4 shadow-sm">
-  <div class="card-body">
-    <div class="row mb-3">
-      <div class="col-6">
-        <h6 class="fw-bold">Clave:</h6>
-        <p class="mb-0"><%= @key.num_key %></p>
-      </div>
-      <div class="col-6">
-        <h6 class="fw-bold">Clave UPP:</h6>
-        <p class="mb-0"><%= @key.upp %></p>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-6">
+            <h6 class="fw-bold"><%= t('keys.columns.key_number') %></h6>
+            <p class="mb-0"><%= @key.num_key %></p>
+          </div>
+          <div class="col-6">
+            <h6 class="fw-bold"><%= t('keys.columns.upp_key') %></h6>
+            <p class="mb-0"><%= @key.upp %></p>
+          </div>
+        </div>
+
+        <h5 class="mt-4 mb-3"><%= t('keys.show_earrings') %> <%= @key.earrings.count %></h5>
+        <ul class="list-group" style="height: 300px; overflow:auto;">
+          <% if @key.earrings.any? %>
+            <% @key.earrings.each do |earring| %>
+              <li class="list-group-item">
+                <i class="fa-solid fa-circle"></i> <%= earring.earring %>
+              </li>
+            <% end %>
+          <% else %>
+            <li class="list-group-item text-muted"><%= t('keys.show_no_earrings') %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
-
-    <h5 class="mt-4 mb-3">Aretes Registrados <%= @key.earrings.count %></h5>
-    <ul class="list-group" style="height: 300px; overflow:auto;">
-      <% if @key.earrings.any? %>
-        <% @key.earrings.each do |earring| %>
-          <li class="list-group-item">
-            <i class="fa-solid fa-circle"></i> <%= earring.earring %>
-          </li>
-        <% end %>
-      <% else %>
-        <li class="list-group-item text-muted">No hay aretes registrados.</li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
   </div>
 </div>

@@ -4,20 +4,201 @@ es:
   edit: "Editar"
   destroy: "Eliminar"
   new: "Crear"
-  traveling_sheet: "Ver Hoja Viajera"
-  data-sheet: "Ficha Técnica"
-  lists:
-    sizes: "Tallas"
-
+  system_name: "EarTrack"
+  welcome: "¡Bienvenido de nuevo!"
   global:
     forms:
       messages:
         errors:
           one: "1 error impide guardar el elemento:"
           other: "%{count} errores impiden guardar el elemento:"
-  
+
   confirm_delete: "¿Estás seguro de eliminar el registro?"
   actions:
-    create: 'creó'
-    update: 'actualizó'
-    destroy: 'eliminó'
+    create: "creó"
+    update: "actualizó"
+    destroy: "eliminó"
+
+  # Textos para la barra lateral
+  sidebar:
+    manage: "Administrar"
+    producer_panel: "Panel del productor"
+    modules: "Módulos"
+    earrings: "Aretes"
+    keys: "Claves"
+    reports: "Reportes"
+    earrings_list: "Listado de aretes"
+    settings: "Ajustes"
+    configurations: "Configuraciones"
+
+  # Textos para la barra de navegación
+  navbar:
+    logout: "Cerrar sesión"
+
+  # Textos comunes en botones y acciones
+  common:
+    save: "Guardar"
+    cancel: "Cancelar"
+    back: "Volver"
+    search: "Buscar"
+    filter: "Filtrar"
+    clear: "Limpiar"
+    details: "Detalles"
+    actions: "Acciones"
+    confirm: "Confirmar"
+    email: "Ingresar correo electrónico"
+    password: "Ingresar contraseña"
+    remember: "Recordarme"
+    login: "Iniciar sesión"
+    login_with_google: "Iniciar sesión con Google"
+    sign_up: "No tienes cuenta? Registrate"
+    forgot_password: "Olvidaste tu contraseña?"
+    didnt_receive_confirmation: "¿No recibiste las instrucciones de confirmación?"
+    didnt_receive_unlock: "¿No recibiste las instrucciones de desbloqueo?"
+    didnt_receive_password: "¿No recibiste las instrucciones de cambio de contraseña?"
+    resend_confirmation: "Reenviar instrucciones de confirmación"
+    resend_unlock: "Reenviar instrucciones de desbloqueo"
+    resend_password: "Reenviar instrucciones de cambio de contraseña"
+    change_password: "Cambiar contraseña"
+    minimum: "carateres minimos"
+    password_recovery: "Recuperar contraseña"
+    password_recovery_description: "Ingrese su correo electrónico y le enviaremos un enlace para restablecer su contraseña."
+    send_reset_instructions: "Enviar instrucciones de restablecimiento"
+    yes: "Sí"
+    no: "No"
+
+  # Textos para la vista de aretes
+  earrings:
+    title: "Aretes"
+    download_list: "Descargar Listado"
+    add_earring: "Agregar arete"
+    edit_earring: "Editar arete"
+    show_earring: "Datos del arete"
+    show_no_earrings: "No hay aretes registrados."
+    data_to: "Datos del arete"
+    show_no_photo: "Sin fotografía"
+    search:
+      earring_number: "Número de Arete"
+      key: "Clave"
+      search_button: "Buscar"
+    form:
+      earring_info: "Información del Arete"
+      select_key: "Selecciona una clave"
+      select_status: "Seleccione el estado"
+      male: "Macho"
+      female: "Hembra"
+      save: "Guardar"
+    messages:
+      correct_create: "Arete creado correctamente"
+      correct_update: "Arete editado correctamente"
+      correct_delete: "Arete eliminado correctamente"
+    errors:
+      prohibited: "%{count} error(es) impiden guardar este arete:"
+      error: "No se pudo eliminar el arete. Ocurrió un error inesperado."
+      not_found: "El arete ya fue eliminado o no existe."
+      error_unexpected: "Ocurrió un error inesperado."
+
+  # Textos para la vista de claves
+  keys:
+    title: "Claves"
+    add_key: "Agregar Clave"
+    edit_key: "Editar Clave"
+    show_key: "Datos de la clave"
+    show_earrings: "Aretes Registrados"
+    show_no_earrings: "No hay aretes registrados."
+    columns:
+      key_number: "Número de la clave"
+      num_key: "Clave #"
+      upp_key: "Clave UPP"
+      actions: "Acciones"
+    search:
+      key: "Clave"
+      upp: "UPP"
+    form:
+      key_info: "Información de la Clave"
+      save: "Guardar"
+      cancel: "Cancelar"
+    messages:
+      correct_create: "Clave creada correctamente"
+      correct_update: "Clave editada correctamente"
+      correct_delete: "Clave eliminada correctamente"
+      correct_delete_with_earrings: "La clave y sus %{count} aretes asociados fueron eliminados correctamente."
+    errors:
+      prohibited: "%{count} error(es) impiden guardar esta clave:"
+      error: "No se pudo eliminar la clave. Ocurrió un error inesperado."
+      not_found: "La clave ya fue eliminada o no existe."
+      error_unexpected: "Ocurrió un error inesperado."
+
+  # Textos para la vista de productores
+  producers:
+    title: "Configuración del productor"
+    form:
+      producer_info: "Información del Productor"
+      save: "Guardar"
+      cancel: "Cancelar"
+    messages:
+      correct_create: "Productor creado correctamente"
+      correct_update: "Productor editado correctamente"
+      correct_delete: "Productor eliminado correctamente"
+      not_assigned: "Debes configurar un productor antes de continuar."
+    errors:
+      prohibited: "%{count} error(es) impiden guardar este productor:"
+      error: "No se pudo eliminar el productor. Ocurrió un error inesperado."
+
+  # Textos para la vista de reportes
+  reports:
+    title: "Reportes"
+    pdf:
+      list: "Listado de Aretes"
+
+  # Textos para la vista dashboard
+  dashboard:
+    title: "Panel del productor"
+    male: "Machos"
+    female: "Hembras"
+    total: "Total"
+    alive: "Vivos (vigentes)"
+    sold: "Vendidos"
+    dead: "Muertos"
+    gender_chart: "Gráfico de Género"
+    status_chart: "Gráfico de Estado"
+
+  # Traducciones para ActiveRecord
+  activerecord:
+    models:
+      earring: "Arete"
+      key: "Clave"
+      producer: "Configuración"
+    attributes:
+      earring:
+        earring: "Número de arete"
+        key_id: "Clave"
+        status: "Estado"
+        age: "Edad"
+        gender: "Género"
+        photo: "Foto"
+      key:
+        num_key: "Número de clave"
+        upp: "Clave UPP"
+        producer_id: "Productor"
+      producer:
+        full_name: "Nombre del productor"
+        address: "Dirección"
+        upp_key: "Clave UPP"
+      user:
+        email: "Correo electrónico"
+        first_name: "Nombre"
+        last_name: "Apellido"
+        phone_number: "Número de teléfono"
+        password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+        new_password: "Nueva contraseña"
+    enums:
+      earring:
+        status:
+          active: "Activo"
+          inactive: "Inactivo"
+          lost: "Perdido"
+        gender:
+          male: "Macho"
+          female: "Hembra"

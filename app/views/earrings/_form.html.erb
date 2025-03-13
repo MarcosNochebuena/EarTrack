@@ -1,14 +1,13 @@
-<%= form_with(model: earring) do |form| %> 
+<%= form_with(model: earring) do |form| %>
 <div class="container col-8 card align-content-center p-0 mb-4">
   <div class="card-header bg-main">
-    <h3 class="text-center">Información del Arete</h3>
+    <h3 class="text-center"><%= t('earrings.form.earring_info') %></h3>
   </div>
   <div class="card-body border-bottom-success">
     <% if earring.errors.any? %>
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">
-          <%= pluralize(earring.errors.count, "error") %> prohibited this earring
-          from being saved:
+          <%= t('earrings.errors.prohibited', count: earring.errors.count) %>
         </h4>
         <ul>
           <% earring.errors.each do |error| %>
@@ -18,8 +17,8 @@
       </div>
     <% end %>
     <div class="mb-3">
-      <%= form.label :key_id, class: "form-label"%> 
-      <%= form.collection_select :key_id, Key.all, :id, :num_key, { prompt: "Selecciona una clave" }, { class: "form-select select2" } %>
+      <%= form.label :key_id, class: "form-label"%>
+      <%= form.collection_select :key_id, Key.all, :id, :num_key, { prompt: t('earrings.form.select_key') }, { class: "form-select select2" } %>
     </div>
 
     <div class="mb-3">
@@ -31,7 +30,7 @@
       <%= form.label :status, class: "form-label" %>
       <%= form.select :status, options_for_select(
         Earring.statuses.keys.map { |key| [I18n.t("activerecord.enums.earring.status.#{key}"), key] }
-      ), { prompt: "Seleccione el status" }, class: "form-control" %>
+      ), { prompt: t('earrings.form.select_status') }, class: "form-control" %>
     </div>
 
     <div class="mb-3">
@@ -43,17 +42,17 @@
       <%= form.label :gender, class: "form-label"%>
       <br />
       <div class="align-self-center d-flex justify-content-center">
-        <%= form.radio_button :gender, :male, id: "male_gender" %> 
-        <%= form.label :male_gender, "Macho", class: "ms-1" %> 
-        <%= form.radio_button :gender, :female, id: "female_gender", class: "ms-4" %> 
-        <%= form.label :female_gender, "Hembra", class: "ms-1" %>
+        <%= form.radio_button :gender, :male, id: "male_gender" %>
+        <%= form.label :male_gender, t('earrings.form.male'), class: "ms-1" %>
+        <%= form.radio_button :gender, :female, id: "female_gender", class: "ms-4" %>
+        <%= form.label :female_gender, t('earrings.form.female'), class: "ms-1" %>
       </div>
     </div>
     <div class="mb-3">
       <%= form.label :photo, class: "form-label" %> <%=
       form.file_field :photo, class:"form-control" %>
     </div>
-      <%= form.submit "Guardar", class: "btn btn-success"%>
+      <%= form.submit t('earrings.form.save'), class: "btn btn-success"%>
     <% end %>
   </div>
 </div>
