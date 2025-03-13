@@ -27,7 +27,7 @@ class ProducersController < ApplicationController
     respond_to do |format|
       if @producer.save
         current_user.update(producer: @producer)
-        format.html { redirect_to producers_path, notice: "Producer was successfully created." }
+        format.html { redirect_to producers_path, notice: t('producers.messages.correct_create') }
         format.json { render :show, status: :created, location: @producer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class ProducersController < ApplicationController
   def update
     respond_to do |format|
       if @producer.update(producer_params)
-        format.html { redirect_to producers_path, notice: "Producer was successfully updated." }
+        format.html { redirect_to producers_path, notice: t('producers.messages.correct_update') }
         format.json { render :show, status: :ok, location: @producer }
       else
         format.html { render :edit, status: :unprocessable_entity }

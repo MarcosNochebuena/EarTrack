@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_producer_assigned
     if current_user && !current_user.producer
-      flash[:alert] = "Debes configurar un productor antes de continuar."
+      flash[:alert] = t('producers.messages.not_assigned')
       redirect_to producers_path
     end
   end

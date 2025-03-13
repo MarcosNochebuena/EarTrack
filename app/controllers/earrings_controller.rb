@@ -33,7 +33,7 @@ class EarringsController < ApplicationController
 
     respond_to do |format|
       if @earring.save
-        format.html { redirect_to earring_url(@earring), notice: "Earring was successfully created." }
+        format.html { redirect_to earring_url(@earring), notice: t('earrings.messages.correct_create') }
         format.json { render :show, status: :created, location: @earring }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +46,7 @@ class EarringsController < ApplicationController
   def update
     respond_to do |format|
       if @earring.update(earring_params)
-        format.html { redirect_to earring_url(@earring), notice: "Earring was successfully updated." }
+        format.html { redirect_to earring_url(@earring), notice: t('earrings.messages.correct_update') }
         format.json { render :show, status: :ok, location: @earring }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,16 +61,16 @@ class EarringsController < ApplicationController
       # Intentar eliminar el arete
       if @earring.destroy
         respond_to do |format|
-          format.html { redirect_to earrings_path, notice: "El arete fue eliminado correctamente." }
+          format.html { redirect_to earrings_path, notice: t('earrings.messages.correct_delete') }
           format.turbo_stream do
-            flash_turbo_stream_with_notice("El arete fue eliminado correctamente.", [turbo_stream.remove(@earring)])
+            flash_turbo_stream_with_notice(t('earrings.messages.correct_delete'), [turbo_stream.remove(@earring)])
           end
           format.json { head :no_content }
         end
       else
         # Si destroy devuelve false (por ejemplo, debido a callbacks)
         error_message = @earring.errors.full_messages.join(", ")
-        error_message = "No se pudo eliminar el arete. Ocurrió un error inesperado." if error_message.blank?
+        error_message = t('earrings.errors.error') if error_message.blank?
 
         respond_to do |format|
           format.html { redirect_to earrings_path, alert: error_message }
@@ -83,18 +83,18 @@ class EarringsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       # Si el arete ya fue eliminado o no existe
       respond_to do |format|
-        format.html { redirect_to earrings_path, alert: "El arete ya fue eliminado o no existe." }
+        format.html { redirect_to earrings_path, alert: t('earrings.errors.not_found') }
         format.turbo_stream do
-          flash_turbo_stream_with_alert("El arete ya fue eliminado o no existe.")
+          flash_turbo_stream_with_alert(t('earrings.errors.not_found'))
         end
         format.json { head :not_found }
       end
     rescue StandardError => e
       # Para cualquier otro error inesperado
       respond_to do |format|
-        format.html { redirect_to earrings_path, alert: "Error al eliminar el arete: #{e.message}" }
+        format.html { redirect_to earrings_path, alert: t('earrings.errors.error_unexpected') }
         format.turbo_stream do
-          flash_turbo_stream_with_alert("Error al eliminar el arete: #{e.message}")
+          flash_turbo_stream_with_alert(t('earrings.errors.error_unexpected'))
         end
         format.json { render json: { error: e.message }, status: :internal_server_error }
       end
