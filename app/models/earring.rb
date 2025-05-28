@@ -21,10 +21,10 @@
 #
 class Earring < ApplicationRecord
   belongs_to :key
-  has_one_attached :photo 
+  has_one_attached :photo
 
-  enum status: %i[ live dead saled ]
-  enum gender:  %i[ female male ]
+  enum :status, { live: 0, dead: 1, saled: 2 }, default: :live
+  enum :gender, { female: 0, male: 1 }
 
   validates :earring, :status, :gender, presence: true
 
