@@ -1,1 +1,1 @@
-json.array! @keys, partial: "keys/key", as: :key
+json.array! @keys, partial: 'keys/key', as: :key

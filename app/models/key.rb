@@ -18,12 +18,12 @@
 #  fk_rails_...  (producer_id => producers.id)
 #
 class Key < ApplicationRecord
-    belongs_to :producer
-    has_many :earrings, dependent: :destroy
-    validates :num_key, :upp, presence: :true
-    validates :num_key, uniqueness: { scope: :producer_id }
+  belongs_to :producer
+  has_many :earrings, dependent: :destroy
+  validates :num_key, :upp, presence: :true
+  validates :num_key, uniqueness: { scope: :producer_id }
 
-    def self.ransackable_attributes(auth_object = nil)
-        ["created_at", "id", "num_key", "updated_at", "upp"]
-    end
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[created_at id num_key updated_at upp]
+  end
 end

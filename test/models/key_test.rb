@@ -17,7 +17,7 @@
 #
 #  fk_rails_...  (producer_id => producers.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class KeyTest < ActiveSupport::TestCase
   # test "the truth" do

@@ -1,1 +1,1 @@
-json.array! @earrings, partial: "earrings/earring", as: :earring
+json.array! @earrings, partial: 'earrings/earring', as: :earring

@@ -23,23 +23,24 @@ class Earring < ApplicationRecord
   belongs_to :key
   has_one_attached :photo
 
-  enum :status, { live: 0, dead: 1, saled: 2 }, default: :live
+  enum :status, { live: 0, dead: 1, sold: 2 }, default: :live
   enum :gender, { female: 0, male: 1 }
 
   validates :earring, :status, :gender, presence: true
 
-  validates :earring, format: { with: /\A\d{4}\z/ }, numericality: { greater_than_or_equal_to: 0, only_integer: true }, uniqueness: true
+  validates :earring, format: { with: /\A\d{4}\z/ }, numericality: { greater_than_or_equal_to: 0, only_integer: true },
+                      uniqueness: true
 
-  validates :age, numericality: { greater_than: 0, only_integer: true }, if: -> { age.present? }
+  validates :age, numericality: { greater_than: 0, only_integer: true, less_than: 9999 }, if: -> { age.present? }
 
   validate :acceptable_image
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["age", "created_at", "earring", "gender", "id", "key_id", "status", "updated_at"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[age created_at earring gender id key_id status updated_at]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["key"]
+  def self.ransackable_associations(_auth_object = nil)
+    ['key']
   end
 
   ransacker :earring do
@@ -47,7 +48,8 @@ class Earring < ApplicationRecord
   end
 
   def photo_webp
-    photo.variant(resize_to_limit: [800, 800], format: :webp, saver:{ subsample_mode: "on", strip: true, interlace: true, lossless: false, quality: 75}).processed
+    photo.variant(resize_to_limit: [800, 800], format: :webp,
+                  saver: { subsample_mode: 'on', strip: true, interlace: true, lossless: false, quality: 75 }).processed
   end
 
   private
@@ -55,13 +57,11 @@ class Earring < ApplicationRecord
   def acceptable_image
     return unless photo.attached?
 
-    unless photo.byte_size <= 5.megabytes
-      errors.add(:photo, "es muy grande")
-    end
+    errors.add(:photo, 'es muy grande') unless photo.byte_size <= 5.megabytes
 
-    acceptable_types = ["image/png", "image/jpg", "image/jpeg", "image/webp"]
-    unless acceptable_types.include?(photo.content_type)
-      errors.add(:photo, "debe ser un PNG, JPG, JPEG, o WEBP")
-    end
+    acceptable_types = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp']
+    return if acceptable_types.include?(photo.content_type)
+
+    errors.add(:photo, 'debe ser un PNG, JPG, JPEG, o WEBP')
   end
 end

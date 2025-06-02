@@ -1,1 +1,1 @@
-json.partial! "earrings/earring", earring: @earring
+json.partial! 'earrings/earring', earring: @earring

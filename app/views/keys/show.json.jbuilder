@@ -1,1 +1,1 @@
-json.partial! "keys/key", key: @key
+json.partial! 'keys/key', key: @key

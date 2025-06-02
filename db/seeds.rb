@@ -7,26 +7,29 @@
 #   Character.create(name: "Luke", movie: movies.first)
 if Rails.env.development?
   producer = Producer.find_or_create_by(
-    produced_adress: Faker::Address.full_address, 
-    producer_full_name: Faker::Name.name, 
-    upp_key: 130361290001)
-  
+    produced_adress: Faker::Address.full_address,
+    producer_full_name: Faker::Name.name,
+    upp_key: 130_361_290_001
+  )
+
   5.times do
     Key.find_or_create_by(
-      num_key: Faker::Number.number(digits: 6), 
+      num_key: Faker::Number.number(digits: 6),
       upp: producer.upp_key,
-      producer: producer)
+      producer:
+    )
   end
 
-  User.create(producer: producer, email: "prueba@mail.com", password: "123456", first_name: "Prueba" )
-  
-  100.times.with_index do |i|
+  User.create(producer:, email: 'prueba@mail.com', password: '123456', first_name: 'Prueba')
+
+  100.times do |_i|
     keys = Key.all
     Earring.create(
       age: Faker::Number.within(range: 1..60),
-      earring: Faker::Number.number(digits: 4), 
-      gender: Faker::Gender.binary_type.downcase, 
-      status: :live, 
-      key_id: keys.sample.id)
+      earring: Faker::Number.number(digits: 4),
+      gender: Faker::Gender.binary_type.downcase,
+      status: :live,
+      key_id: keys.sample.id
+    )
   end
 end

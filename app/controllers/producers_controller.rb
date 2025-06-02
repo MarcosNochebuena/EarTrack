@@ -1,10 +1,10 @@
 class ProducersController < ApplicationController
-  before_action :set_producer, only: %i[ edit update ]
+  before_action :set_producer, only: %i[edit update]
 
   # GET /producers or /producers.json
   def index
     @producer = current_user.producer || Producer.new
-    render (@producer.persisted? ? :edit : :new)
+    render(@producer.persisted? ? :edit : :new)
   end
 
   # GET /producers/1 or /producers/1.json
@@ -60,13 +60,14 @@ class ProducersController < ApplicationController
   # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_producer
-      @producer = Producer.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def producer_params
-      params.require(:producer).permit(:upp_key, :producer_full_name, :produced_adress)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_producer
+    @producer = Producer.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def producer_params
+    params.require(:producer).permit(:upp_key, :producer_full_name, :produced_adress)
+  end
 end
