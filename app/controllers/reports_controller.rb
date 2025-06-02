@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReportsController < ApplicationController
   def index
     @earrings_by_key = Earring.where(status: :live).includes(:key).group_by(&:key_id)

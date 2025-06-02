@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: keys
@@ -20,7 +22,7 @@
 class Key < ApplicationRecord
   belongs_to :producer
   has_many :earrings, dependent: :destroy
-  validates :num_key, :upp, presence: :true
+  validates :num_key, :upp, presence: true
   validates :num_key, uniqueness: { scope: :producer_id }
 
   def self.ransackable_attributes(_auth_object = nil)

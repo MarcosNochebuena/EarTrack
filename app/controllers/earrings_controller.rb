@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EarringsController < ApplicationController
   before_action :set_earring, only: %i[show edit update destroy]
 
@@ -6,7 +8,7 @@ class EarringsController < ApplicationController
     # @q = Earring.includes(:key).ransack(params[:q])
     # @pagy, @earrings = pagy(@q.result(distinct: true))
 
-    search_params = params.permit(:format, :page, q: %i[earring_cont key_num_key_cont])
+    params.permit(:format, :page, q: %i[earring_cont key_num_key_cont])
     @q = Earring.includes(:key).ransack(params[:q])
     earrings = @q.result.where(keys: { producer: current_user.producer }).order(created_at: :desc)
     @live_earrings_count = earrings.where(status: :live).count

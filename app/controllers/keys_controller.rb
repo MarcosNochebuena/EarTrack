@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class KeysController < ApplicationController
   before_action :set_key, only: %i[show edit update destroy]
 
@@ -52,7 +54,7 @@ class KeysController < ApplicationController
   # DELETE /keys/1 or /keys/1.json
   def destroy
     earrings_count = @key.earrings.count
-    has_earrings = earrings_count > 0
+    has_earrings = earrings_count.positive?
 
     # Intentar eliminar la clave (y sus aretes asociados gracias a dependent: :destroy)
     if @key.destroy
