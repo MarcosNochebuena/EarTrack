@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: earrings
@@ -19,7 +21,7 @@
 #
 #  fk_rails_...  (key_id => keys.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class EarringTest < ActiveSupport::TestCase
   # test "the truth" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeDataTypeToEarrings < ActiveRecord::Migration[7.0]
   def change
     change_column :earrings, :status, :integer, using: 'status::integer'

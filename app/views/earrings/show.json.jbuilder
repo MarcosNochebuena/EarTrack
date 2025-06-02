@@ -1,1 +1,3 @@
-json.partial! "earrings/earring", earring: @earring
+# frozen_string_literal: true
+
+json.partial! 'earrings/earring', earring: @earring
