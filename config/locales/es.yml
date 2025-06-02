@@ -106,6 +106,7 @@ es:
     show_key: "Datos de la clave"
     show_earrings: "Aretes Registrados"
     show_no_earrings: "No hay aretes registrados."
+    add_earring: "Agregar Arete"
     columns:
       key_number: "Número de la clave"
       num_key: "Clave #"
