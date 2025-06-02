@@ -21,7 +21,9 @@ class EarringsController < ApplicationController
   # GET /earrings/new
   def new
     @earring = Earring.new
+    key_id = params[:key_id]
     @keys = Key.all
+    @earring.key_id = key_id if key_id
   end
 
   # GET /earrings/1/edit
