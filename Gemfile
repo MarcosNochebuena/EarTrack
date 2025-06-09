@@ -71,7 +71,10 @@ gem 'image_processing', '~> 1.2'
 group :development, :test do
   gem 'annotate'
   gem 'dotenv-rails'
+  gem 'factory_bot_rails' # Para crear datos de prueba
   gem 'faker', '~> 3.0'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers' # Helpers para tests comunes
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
