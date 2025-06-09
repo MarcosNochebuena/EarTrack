@@ -91,6 +91,9 @@ GEM
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.3.0)
+    bullet (8.0.8)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     capybara (3.40.0)
       addressable
       matrix
@@ -307,6 +310,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2025.2)
       tzinfo (>= 1.0.0)
+    uniform_notifier (1.17.0)
     uri (1.0.3)
     useragent (0.16.11)
     warden (1.2.9)
@@ -340,6 +344,7 @@ DEPENDENCIES
   annotate
   bootsnap
   bootstrap (~> 5.2.0)
+  bullet
   capybara
   chartkick
   cloudinary

@@ -9,7 +9,7 @@ class EarringsController < ApplicationController
     # @pagy, @earrings = pagy(@q.result(distinct: true))
 
     params.permit(:format, :page, q: %i[earring_cont key_num_key_cont])
-    @q = Earring.includes(:key).ransack(params[:q])
+    @q = Earring.includes(:key).includes([:photo_attachment]).ransack(params[:q])
     earrings = @q.result.where(keys: { producer: current_user.producer }).order(created_at: :desc)
     @live_earrings_count = earrings.where(status: :live).count
     @pagy, @earrings = pagy_countless(earrings)
