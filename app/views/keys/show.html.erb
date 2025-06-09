@@ -20,7 +20,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-          <h5 class="mt-4 mb-3"><%= t('keys.show_earrings') %> <%= @key.earrings.count %></h5>
+          <h5 class="mt-4 mb-3"><%= t('keys.show_earrings') %> <%= @key.earrings_count %></h5>
           <%= link_to t('keys.add_earring'), new_earring_path(key_id: @key.id), class: 'btn btn-success mt-4 mb-3' %>
         </div>
         <ul class="list-group" style="height: 300px; overflow:auto;">

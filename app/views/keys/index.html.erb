@@ -10,19 +10,20 @@
 
       <div class="container">
         <div class="row font-weight-bold border-bottom">
-          <div class="col-md-4 text-center"><%= t('keys.columns.key_number') %></div>
-          <div class="col-md-4 text-center"><%= t('keys.columns.upp_key') %></div>
-          <div class="col-md-4 text-center"><%= t('keys.columns.actions') %></div>
+          <div class="col-md-3 text-center"><%= t('keys.columns.key_number') %></div>
+          <div class="col-md-3 text-center"><%= t('keys.columns.upp_key') %></div>
+          <div class="col-md-3 text-center"><%= t('keys.show_earrings') %></div>
+          <div class="col-md-3 text-center"><%= t('keys.columns.actions') %></div>
         </div>
 
         <%= search_form_for @q, class: "row g-3 mt-2 mb-4", data: { turbo_frame: :results } do |f| %>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <%= f.search_field :num_key_cont, class: "form-control me-2", placeholder: t('keys.search.key'), oninput: 'this.form.requestSubmit()', autofocus: true, autocomplete: 'off' %>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <%= f.search_field :upp_cont, class: "form-control", placeholder: t('keys.search.upp'), oninput: 'this.form.requestSubmit()', autocomplete: 'off' %>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
           </div>
         <% end %>
 
