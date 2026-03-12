@@ -1,16 +1,16 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: producers
 #
-#  id                 :bigint           not null, primary key
-#  produced_adress    :string
-#  producer_full_name :string
+#  id                 :integer          not null, primary key
 #  upp_key            :string
+#  producer_full_name :string
+#  produced_adress    :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
+
 class Producer < ApplicationRecord
   has_many :users
   has_many :keys

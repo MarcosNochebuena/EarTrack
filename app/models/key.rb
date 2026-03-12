@@ -1,24 +1,20 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: keys
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  num_key     :string
 #  upp         :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  producer_id :bigint
+#  producer_id :integer
 #
 # Indexes
 #
 #  index_keys_on_producer_id  (producer_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (producer_id => producers.id)
-#
+
 class Key < ApplicationRecord
   belongs_to :producer
   has_many :earrings, dependent: :destroy

@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: develop
+      POSTGRES_PASSWORD: dev12345
+      POSTGRES_DB: aretes_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+  web:
+    build:
+      context: .
+      target: development
+    command: bundle exec rails server -b 0.0.0.0
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      database_username: develop
+      database_password: dev12345
+      database_host: db
+      REDIS_URL: redis://redis:6379/1
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+volumes:
+  pg_data:
+  bundle_cache:
