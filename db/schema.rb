@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_28_204059) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_12_221053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_28_204059) do
   create_table "producers", force: :cascade do |t|
     t.string "upp_key"
     t.string "producer_full_name"
-    t.string "produced_adress"
+    t.string "produced_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

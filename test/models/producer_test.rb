@@ -6,7 +6,7 @@
 #  id                 :integer          not null, primary key
 #  upp_key            :string
 #  producer_full_name :string
-#  produced_adress    :string
+#  produced_address   :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
