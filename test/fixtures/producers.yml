@@ -5,7 +5,7 @@
 #  id                 :integer          not null, primary key
 #  upp_key            :string
 #  producer_full_name :string
-#  produced_adress    :string
+#  produced_address   :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -13,9 +13,9 @@
 one:
   upp_key: MyString
   producer_full_name: MyString
-  produced_adress: MyString
+  produced_address: MyString
 
 two:
   upp_key: MyString
   producer_full_name: MyString
-  produced_adress: MyString
+  produced_address: MyString
